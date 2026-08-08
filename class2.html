@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HFT Module - Class 2 (30 May) - Notes + Charts</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 28px;
+  }
+  h1 {
+    font-size: 24px;
+    color: #0f3460;
+    border-bottom: 3px solid #e94560;
+    padding-bottom: 8px;
+    margin: 10px 0 6px 0;
+  }
+  h2 {
+    font-size: 19px;
+    color: #0f3460;
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 5px;
+    margin: 26px 0 10px 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 15.5px;
+    color: #e94560;
+    margin: 18px 0 6px 0;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 13.5px;
+    color: #0f3460;
+    margin: 12px 0 4px 0;
+    page-break-after: avoid;
+  }
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0 10px 0; padding-left: 22px; }
+  li { margin: 3px 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1px solid #b0b8c9;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #0f3460;
+    color: #ffffff;
+  }
+  tr:nth-child(even) { background: #f3f5f9; }
+  pre, .calc {
+    background: #f3f5f9;
+    border-left: 4px solid #0f3460;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+  }
+  .calc-red { border-left-color: #e94560; }
+  .calc-green { border-left-color: #2e8b57; }
+  .note {
+    background: #fff8e1;
+    border: 1px solid #e0c060;
+    border-left: 5px solid #f0a500;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 12.5px;
+  }
+  .rule {
+    background: #fdeaea;
+    border: 1px solid #e0a0a0;
+    border-left: 5px solid #e94560;
+    padding: 8px 12px;
+    margin: 10px 0;
+  }
+  .win {
+    background: #e8f5e9;
+    border: 1px solid #a0d0a0;
+    border-left: 5px solid #2e8b57;
+    padding: 8px 12px;
+    margin: 10px 0;
+  }
+  .toc { background: #f3f5f9; border: 1px solid #b0b8c9; padding: 12px 18px; }
+  .toc a { color: #0f3460; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .section-break {
+    page-break-before: always;
+  }
+  .tag {
+    display: inline-block;
+    background: #e94560;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .chart-card {
+    background: #fff;
+    border: 1px solid #d0d6e0;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .chart-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #0f3460;
+  }
+  @media print {
+    body { font-size: 11.5px; }
+    .page { max-width: 100%; padding: 0; }
+    h2 { page-break-before: auto; }
+    .section-break { page-break-before: always; }
+    a { color: inherit; }
+    .toc { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ==================== COVER ==================== -->
+<h1 style="text-align:center; border-bottom:none; font-size:30px; margin-top:120px;">
+  HFT MODULE — CLASS 2 (30 MAY)
+</h1>
+<p style="text-align:center; font-size:18px; color:#0f3460;">Complete Study Notes (Compiled &amp; Printable)</p>
+<p style="text-align:center; font-size:13px; color:#555;">
+  Teacher: Hemant Jain &nbsp;|&nbsp; Channel: TradeWise (by The Future University) &nbsp;|&nbsp; Duration: ~2h28m<br>
+  Video: <em>Class 2 | HFT MODULE | 30 May</em>
+</p>
+<div class="toc">
+<b>Table of Contents</b>
+<ul>
+  <li><a href="#recap">1. Class 1 Recap (Revision)</a></li>
+  <li><a href="#moneyness">2. Moneyness — ITM / ATM / OTM</a></li>
+  <li><a href="#intrinsic">3. Intrinsic Value vs Time Value</a></li>
+  <li><a href="#payoff">4. Payoff — 4 Legs (Long/Short Call &amp; Put)</a></li>
+  <li><a href="#greeks">5. Greeks — Delta, Theta, Gamma, Vega, Rho</a></li>
+  <li><a href="#iv">6. Implied Volatility &amp; India VIX</a></li>
+  <li><a href="#optionchain">7. Option Chain — OI, LTP, Greeks, Volume</a></li>
+  <li><a href="#oi">8. Open Interest (OI), Max Pain, PCR</a></li>
+  <li><a href="#margin">9. Margin for Option Sellers</a></li>
+  <li><a href="#qa">10. Q&amp;A Highlights</a></li>
+  <li><a href="#revision">11. Quick Revision &amp; Formulas</a></li>
+  <li><a href="#rules">12. Golden Rules / Take-aways</a></li>
+</ul>
+</div>
+<div class="section-break"></div>
+
+<!-- ==================== 1. RECAP ==================== -->
+<h2 id="recap">1. Class 1 Recap (Revision)</h2>
+
+<p><span class="tag">RECAP</span>Jo sab Class 1 mein cover hua tha — quick revision:</p>
+<ul>
+  <li><b>Why market exists?</b> Options/derivatives ka real purpose = <b>risk transfer</b>. Option buyer ke sar se risk nikal kar option seller ke sar pe chala jata hai.</li>
+  <li><b>Put Option</b> = Right to Sell (insurance). Log put isliye buy karte hain ki agar stock gir gaya to unke losses avoid ho jaayein. Put <b>seller</b> isliye bechta hai ki agar stock gira to delivery lena hai, nahi gira to premium kha lunga.</li>
+  <li><b>Call Option</b> = Right to Buy at predefined price. Jo log call <b>sell</b> karte hain (jaise agar mere paas stocks/futures hain) — agar stock strike se upar gaya to predefined price pe maal bech dunga; nahi gaya to koi dikkat nahi.</li>
+  <li><b>Futures</b> = Leverage tool. ~₹1 lakh margin girvi rakh ke ~₹4–5 lakh exposure (4–5x typical leverage).</li>
+  <li><b>Liquidity</b> — hamesha liquid contracts mein hi kaam karo, illiquid mein nahi.</li>
+  <li>Options trading = transfer of risk from buyer to seller.</li>
+  <li>New words: <b>MTM, Rollover, Strike Price, Premium, Theta, Option Buyer, Option Seller, Put-Call-Strike</b>.</li>
+</ul>
+
+<div class="note"><b>Day 1 Wrap-up:</b> "We are eating theta — hum time value of money kha rahe hain. Options exist to transfer risk. Time ke basis pe option ka price apne aap girta hai jo seller ki jeb mein jata hai." Theta ki detail Greeks mein aaj karenge.</div>
+
+<!-- ==================== 2. MONEYNESS ==================== -->
+<h2 id="moneyness" class="section-break">2. Moneyness — ITM / ATM / OTM</h2>
+<div class="chart-card">
+<h3>Moneyness — PUT (DAB @ ₹450): upar wali ITM, barabar ATM, neeche OTM</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="130" y="40" width="90" height="120" fill="#2e8b57" rx="6"/><text x="175.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">470 Put</text><text x="175.0" y="124" text-anchor="middle" font-size="13" fill="#fff">ITM</text><rect x="260" y="40" width="90" height="120" fill="#f0a500" rx="6"/><text x="305.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">450 Put</text><text x="305.0" y="124" text-anchor="middle" font-size="13" fill="#fff">ATM</text><rect x="390" y="40" width="90" height="120" fill="#e94560" rx="6"/><text x="435.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">420 Put</text><text x="435.0" y="124" text-anchor="middle" font-size="13" fill="#fff">OTM</text><line x1="110" y1="240" x2="440" y2="240" stroke="#333" stroke-width="2"/><text x="275" y="230" text-anchor="middle" font-size="13" fill="#333">DAB Price = ₹450</text><line x1="175.0" y1="240" x2="175.0" y2="240" stroke="#333" stroke-width="1"/><line x1="305.0" y1="240" x2="305.0" y2="240" stroke="#333" stroke-width="1"/><line x1="435.0" y1="240" x2="435.0" y2="240" stroke="#333" stroke-width="1"/><text x="14" y="110" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 110)">Strike</text><text x="14" y="240" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 240)">Spot</text>
+</svg>
+<p class="chart-note">Put ka case: strike SPOT se upar hai → ITM (exercise pe ₹470 mein sell hoga jabki market ₹450).</p>
+</div>
+<div class="chart-card">
+<h3>Moneyness — CALL (DAB @ ₹450): neeche wali ITM, barabar ATM, upar OTM</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="130" y="40" width="90" height="120" fill="#2e8b57" rx="6"/><text x="175.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">430 Call</text><text x="175.0" y="124" text-anchor="middle" font-size="13" fill="#fff">ITM</text><rect x="260" y="40" width="90" height="120" fill="#f0a500" rx="6"/><te
+<div class="chart-card">
+<h3>Intrinsic + Time Value — DAB Puts (June Future ₹451)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="110" y="214.5" width="110" height="0.0" fill="#0f3460"/><text x="165.0" y="228.5" text-anchor="middle" font-size="11" fill="#fff">0</text><rect x="110" y="214.5" width="110" height="85.5" fill="#2e8b57"/><text x="165.0" y="228.5" text-anchor="middle" font-size="11" fill="#fff">8.55</text><text x="165.0" y="322" text-anchor="middle" font-size="11" fill="#333">440 Put</text><text x="165.0" y="336" text-anchor="middle" font-size="11" fill="#333">(ATM/OTM)</text><rect x="260" y="165.0" width="110" height="0.0" fill="#0f3460"/><text x="315.0" y="179.0" text-anchor="middle" font-size="11" fill="#fff">0</text><rect x="260" y="165.0" width="110" height="135.0" fill="#f0a500"/><text x="315.0" y="179.0" text-anchor="middle" font-size="11" fill="#fff">13.5</text><text x="315.0" y="322" text-anchor="middle" font-size="11" fill="#333">450 Put</text><text x="315.0" y="336" text-anchor="middle" font-size="11" fill="#333">(ATM)</text><rect x="410" y="102.5" width="110" height="90.0" fill="#0f3460"/><text x="465.0" y="116.5" text-anchor="middle" font-size="11" fill="#fff">9</text><rect x="410" y="192.5" width="110" height="107.5" fill="#e94560"/><text x="465.0" y="206.5" text-anchor="middle" font-size="11" fill="#fff">10.75</text><text x="465.0" y="322" text-anchor="middle" font-size="11" fill="#333">460 Put</text><text x="465.0" y="336" text-anchor="middle" font-size="11" fill="#333">(ITM)</text><rect x="90" y="10" width="14" height="14" fill="#0f3460"/><text x="110" y="22" font-size="12" fill="#333">Intrinsic Value</text><rect x="230" y="10" width="14" height="14" fill="#2e8b57"/><text x="250" y="22" font-size="12" fill="#333">Time Value</text>
+</svg>
+<p class="chart-note">ATM pe Time Value sabse zyada (13.5), ITM pe intrinsic (9) + thoda TV (10.75). Yehi 'theta ATM pe max' ka basis hai.</p>
+</div>
+<div class="chart-card">
+<h3>Theta / Time Value vs Moneyness — ATM pe Peak</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">3</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">6</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">8</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">11</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">14</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">17</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><
+<div class="chart-card">
+<h3>Long Call Payoff — Buy 420 Call @ ₹10 (Lot 100)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="333.8" x2="700" y2="333.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="337.8" text-anchor="end" font-size="11" fill="#555">-5000</text><line x1="70" y1="318.5" x2="700" y2="318.5" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="322.5" text-anchor="end" font-size="11" fill="#555">-4500</text><line x1="70" y1="303.1" x2="700" y2="303.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="307.1" text-anchor="end" font-size="11" fill="#555">-4000</text><line x1="70" y1="287.7" x2="700" y2="287.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="291.7" text-anchor="end" font-size="11" fill="#555">-3500</text><line x1="70" y1="272.3" x2="700" y2="272.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="276.3" text-anchor="end" font-size="11" fill="#555">-3000</text><line x1="70" y1="256.9" x2="700" y2="256.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="260.9" text-anchor="end" font-size="11" fill="#555">-2500</text><line x1="70" y1="241.5" x2="700" y2="241.5" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="245.5" text-anchor="end" font-size="11" fill="#555">-2000</text><line x1="70" y1="226.2" x2="700" y2="226.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="230.2" text-anchor="end" font-size="11" fill="#555">-1500</text><line x1="70" y1="210.8" x2="700" y2="210.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="214.8" text-anchor="end" font-size="11" fill="#555">-1000</text><line x1="70" y1="195.4" x2="700" y2="195.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="199.4" text-anchor="end" font-size="11" fill="#555">-500</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="164.6" x2="700" y2="164.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="168.6" text-anchor="end" font-size="11" fill="#555">500</text><line x1="70" y1="149.2" x2="700" y2="149.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="153.2" text-anchor="end" font-size="11" fill="#555">1000</text><line x1="70" y1="133.8" x2="700" y2="133.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="137.8" text-anchor="end" font-size="11" fill="#555">1500</text><line x1="70" y1="118.5" x2="700" y2="118.5" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="122.5" text-anchor="end" font-size="11" fill="#555">2000</text><line x1="70" y1="103.1" x2="700" y2="103.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="107.1" text-anchor="end" font-size="11" fill="#555">2500</text><line x1="70" y1="87.7" x2="700" y2="87.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="91.7" text-anchor="end" font-size="11" fill="#555">3000</text><line x1="70" y1="72.3" x2="700" y2="72.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="76.3" text-anchor="end" font-size="11" fill="#555">3500</text><line x1="70" y1="56.9" x2="700" y2="56.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="60.9" text-anchor="end" font-size="11" fill="#555">4000</text><line x1="70" y1="41.5" x2="700" y2="41.5" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="45.5" text-anchor="end" font-size="11" fill="#555">4500</text><line x1="70" y1="26.2" x2="700" y2="26.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="30.2" text-anchor="end" font-size="11" fill="#555">5000</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#333" stroke-width="1.5"/><text x="62" y="176.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">380</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">402.5</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">425</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">447.5</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">470</text><line x1="350.0" y1="20" x2="350.0" y2="340" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><text x="350.0" y="14" text-anchor="middle" font-size="11" fill="#666">Strike 420</text><line x1="420.0" y1="20" x2="420.0" y2="340" stroke="#e94560" stroke-width="1.5" stroke-dasharray="3,3"/><text x="420.0" y="370" text-anchor="middle" font-size="10" fill="#c00">BE 430</text><polyline points="70.0,210.8 73.1,210.8 76.3,210.8 79.5,210.8 82.6,210.8 85.8,210.8 88.9,210.8 92.0,210.8 95.2,210.8 98.4,210.8 101.5,210.8 104.6,210.8 107.8,210.8 111.0,210.8 114.1,210.8 117.2,210.8 120.4,210.8 123.5,210.8 126.7,210.8 129.9,210.8 133.0,210.8 136.1,210.8 139.3,210.8 142.5,210.8 145.6,210.8 148.8,210.8 151.9,210.8 155.0,210.8 158.2,210.8 161.4,210.8 164.5,210.8 167.6,210.8 170.8,210.8 174.0,210.8 177.1,210.8 180.2,210.8 183.4,210.8 186.5,210.8 189.7,210.8 192.9,210.8 196.0,210.8 199.1,210.8 202.3,210.8 205.5,210.8 208.6,210.8 211.8,210.8 214.9,210.8 218.0,210.8 221.2,210.8 224.4,210.8 227.5,210.8 230.6,210.8 233.8,210.8 237.0,210.8 240.1,210.8 243.2,210.8 246.4,210.8 249.5,210.8 252.7,210.8 255.9,210.8 259.0,210.8 262.1,210.8 265.3,210.8 268.5,210.8 271.6,210.8 274.8,210.8 277.9,210.8 281.0,210.8 284.2,210.8 287.4,210.8 290.5,210.8 293.6,210.8 296.8,210.8 300.0,210.8 303.1,210.8 306.2,210.8 309.4,210.8 312.5,210.8 315.7,210.8 318.9,210.8 322.0,210.8 325.1,210.8 328.3,210.8 331.5,210.8 334.6,210.8 337.8,210.8 340.9,210.8 344.0,210.8 347.2,210.8 350.4,210.6 353.5,209.2 356.6,207.8 359.8,206.5 363.0,205.1 366.1,203.7 369.2,202.3 372.4,200.9 375.5,199.5 378.7,198.2 381.9,196.8 385.0,195.4 388.1,194.0 391.3,192.6 394.5,191.2 397.6,189.8 400.8,188.5 403.9,187.1 407.0,185.7 410.2,184.3 413.4,182.9 416.5,181.5 419.6,180.2 422.8,178.8 426.0,177.4 429.1,176.0 432.2,174.6 435.4,173.2 438.5,171.8 441.7,170.5 444.9,169.1 448.0,167.7 451.1,166.3 454.3,164.9 457.5,163.5 460.6,162.2 463.8,160.8 466.9,159.4 470.0,158.0 473.2,156.6 476.4,155.2 479.5,153.8 482.6,152.5 485.8,151.1 489.0,149.7 492.1,148.3 495.2,146.9 498.4,145.5 501.5,144.2 504.7,142.8 507.9,141.4 511.0,140.0 514.1,138.6 517.3,137.2 520.5,135.8 523.6,134.5 526.8,133.1 529.9,131.7 533.0,130.3 536.2,128.9 539.4,127.5 542.5,126.2 545.6,124.8 548.8,123.4 552.0,122.0 555.1,120.6 558.2,119.2 561.4,117.8 564.5,116.5 567.7,115.1 570.9,113.7 574.0,112.3 577.1,110.9 580.3,109.5 583.5,108.2 586.6,106.8 589.8,105.4 592.9,104.0 596.0,102.6 599.2,101.2 602.4,99.8 605.5,98.5 608.6,97.1 611.8,95.7 615.0,94.3 618.1,92.9 621.2,91.5 624.4,90.2 627.5,88.8 630.7,87.4 633.9,86.0 637.0,84.6 640.1,83.2 643.3,81.8 646.5,80.5 649.6,79.1 652.8,77.7 655.9,76.3 659.0,74.9 662.2,73.5 665.4,72.2 668.5,70.8 671.6,69.4 674.8,68.0 678.0,66.6 681.1,65.2 684.2,63.8 687.4,62.5 690.5,61.1 693.7,59.7 696.9,58.3 700.0,56.9" fill="none" stroke="#2e8b57" stroke-width="3"/><polyline points="70.0,149.2 73.1,149.2 76
+<div class="chart-card">
+<h3>Volatility Smile — IV ATM pe minimum, dono taraf badhta</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="326.7" x2="700" y2="326.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="330.7" text-anchor="end" font-size="11" fill="#555">19</text><line x1="70" y1="273.3" x2="700" y2="273.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="277.3" text-anchor="end" font-size="11" fill="#555">21</text><line x1="70" y1="220.0" x2="700" y2="220.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="224.0" text-anchor="end" font-size="11" fill="#555">24</text><line x1="70" y1="166.7" x2="700" y2="166.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="170.7" text-anchor="end" font-size="11" fill="#555">27</text><line x1="70" y1="113.3" x2="700" y2="113.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="117.3" text-anchor="end" font-size="11" fill="#555">29</text><line x1="70" y1="60.0" x2="700" y2="60.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="64.0" text-anchor="end" font-size="11" fill="#555">32</text><line x1="70" y1="700.0" x2="700" y2="700.0" stroke="#333" stroke-width="1.5"/><text x="62" y="696.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">-40</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">-20</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">20</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">40</text><text x="164.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">OTM</text><text x="385.0" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ATM</text><text x="605.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ITM</text><polyline points="70.0,100.0 73.1,104.0 76.3,107.9 79.5,111.8 82.6,115.7 85.8,119.5 88.9,123.3 92.0,127.0 95.2,130.7 98.4,134.4 101.5,138.0 104.6,141.6 107.8,145.1 111.0,148.6 114.1,152.1 117.2,155.5 120.4,158.9 123.5,162.2 126.7,165.5 129.9,168.8 133.0,172.0 136.1,175.2 139.3,178.3 142.4,181.4 145.6,184.5 148.8,187.5 151.9,190.5 155.1,193.4 158.2,196.3 161.4,199.2 164.5,202.0 167.6,204.8 170.8,207.5 173.9,210.2 177.1,212.9 180.2,215.5 183.4,218.1 186.6,220.6 189.7,223.1 192.9,225.6 196.0,228.0 199.2,230.4 202.3,232.7 205.4,235.0 208.6,237.3 211.8,239.5 214.9,241.7 218.1,243.8 221.2,245.9 224.4,248.0 227.5,250.0 230.7,252.0 233.8,253.9 237.0,255.8 240.1,257.7 243.2,259.5 246.4,261.3 249.6,263.0 252.7,264.7 255.9,266.4 259.0,268.0 262.1,269.6 265.3,271.1 268.4,272.6 271.6,274.1 274.8,275.5 277.9,276.9 281.1,278.2 284.2,279.5 287.4,280.8 290.5,282.0 293.6,283.2 296.8,284.3 299.9,285.4 303.1,286.5 306.2,287.5 309.4,288.5 312.6,289.4 315.7,290.3 318.9,291.2 322.0,292.0 325.1,292.8 328.3,293.5 331.5,294.2 334.6,294.9 337.8,295.5 340.9,296.1 344.0,296.6 347.2,297.1 350.4,297.6 353.5,298.0 356.6,298.4 359.8,298.7 362.9,299.0 366.1,299.3 369.2,299.5 372.4,299.7 375.6,299.8 378.7,299.9 381.9,300.0 385.0,300.0 388.1,300.0 391.3,299.9 394.4,299.8 397.6,299.7 400.8,299.5 403.9,299.3 407.0,299.0 410.2,298.7 413.4,298.4 416.5,298.0 419.6,297.6 422.8,297.1 426.0,296.6 429.1,296.1 432.2,295.5 435.4,294.9 438.5,294.2 441.7,293.5 444.8,292.8 448.0,292.0 451.1,291.2 454.3,290.3 457.4,289.4 460.6,288.5 463.8,287.5 466.9,286.5 470.1,285.4 473.2,284.3 476.4,283.2 479.5,282.0 482.7,280.8 485.8,279.5 489.0,278.2 492.1,276.9 495.2,275.5 498.4,274.1 501.5,272.6 504.7,271.1 507.9,269.6 511.0,268.0 514.1,266.4 517.3,264.7 520.5,263.0 523.6,261.3 526.8,259.5 529.9,257.7 533.0,255.8 536.2,253.9 539.4,252.0 542.5,250.0 545.6,248.0 548.8,245.9 552.0,243.8 555.1,241.7 558.2,239.5 561.4,237.3 564.5,235.0 567.7,232.7 570.9,230.4 574.0,228.0 577.2,225.6 580.3,223.1 583.5,220.6 586.6,218.1 589.8,215.5 592.9,212.9 596.0,210.2 599.2,207.5 602.4,204.8 605.5,202.0 608.7,199.2 611.8,196.3 615.0,193.4 618.1,190.5 621.2,187.5 624.4,184.5 627.5,181.4 630.7,178.3 633.8,175.2 637.0,172.0 640.1,168.8 643.3,165.5 646.5,162.2 649.6,158.9 652.8,155.5 655.9,152.1 659.0,148.6 662.2,145.1 665.4,141.6 668.5,138.0 671.7,134.4 674.8,130.7 678.0,127.0 681.1,123.3 684.2,119.5 687.4,115.7 690.5,111.8 693.7,107.9 696.8,104.0 700.0,100.0" fill="none" stroke="#0f3460" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Strike Distance from ATM</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">Implied Volatility (%)</text>
+</svg>
+<p class="chart-note">Option chain mein 450/455 ki IV ~20, door ke strikes pe ~30. Graph smile jaisa → 'Volatility Smile'.</p>
+</div>
+.3,149.2 79.5,149.2 82.6,149.2 85.8,149.2 88.9,149.2 92.0,149.2 95.2,149.2 98.4,149.2 101.5,149.2 104.6,149.2 107.8,149.2 111.0,149.2 114.1,149.2 117.2,149.2 120.4,149.2 123.5,149.2 126.7
+<div class="chart-card">
+<h3>Open Interest (OI) bars — Max Pain Concept (illustrative)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="100" y="162.0" width="21.0" height="88.0" fill="#2e8b57"/><rect x="125.0" y="232.4" width="21.0" height="17.6" fill="#e94560"/><text x="123.0" y="266" text-anchor="middle" font-size="11" fill="#333">420</text><rect x="176" y="52.0" width="21.0" height="198.0" fill="#2e8b57"/><rect x="201.0" y="217.0" width="21.0" height="33.0" fill="#e94560"/><text x="199.0" y="266" text-anchor="middle" font-size="11" fill="#333">430</text><rect x="252" y="129.0" width="21.0" height="121.0" fill="#2e8b57"/><rect x="277.0" y="195.0" width="21.0" height="55.0" fill="#e94560"/><text x="275.0" y="266" text-anchor="middle" font-size="11" fill="#333">440</text><rect x="328" y="96.0" width="21.0" height="154.0" fill="#2e8b57"/><rect x="353.0" y="151.0" width="21.0" height="99.0" fill="#e94560"/><text x="351.0" y="266" text-anchor="middle" font-size="11" fill="#333">450</text><rect x="404" y="151.0" width="21.0" height="99.0" fill="#2e8b57"/><rect x="429.0" y="129.0" width="21.0" height="121.0" fill="#e94560"/><text x="427.0" y="266" text-anchor="middle" font-size="11" fill="#333">460</text><rect x="480" y="195.0" width="21.0" height="55.0" fill="#2e8b57"/><rect x="505.0" y="96.0" width="21.0" height="154.0" fill="#e94560"/><text x="503.0" y="266" text-anchor="middle" font-size="11" fill="#333">470</text><rect x="556" y="217.0" width="21.0" height="33.0" fill="#2e8b57"/><rect x="581.0" y="52.0" width="21.0" height="198.0" fill="#e94560"/><text x="579.0" y="266" text-anchor="middle" font-size="11" fill="#333">480</text><rect x="632" y="232.4" width="21.0" height="17.6" fill="#2e8b57"/><rect x="657.0" y="-14.0" width="21.0" height="264.0" fill="#e94560"/><text x="655.0" y="266" text-anchor="middle" font-size="11" fill="#333">500</text><line x1="199.0" y1="20" x2="199.0" y2="250" stroke="#f0a500" stroke-width="2" stroke-dasharray="5,4"/><text x="199.0" y="14" text-anchor="middle" font-size="12" fill="#b8860b" font-weight="bold">Max Pain</text><rect x="80" y="10" width="14" height="14" fill="#2e8b57"/><text x="100" y="22" font-size="12" fill="#333">Put OI</text><rect x="180" y="10" width="14" height="14" fill="#e94560"/><text x="200" y="22" font-size="12" fill="#333">Call OI</text><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Strike Price</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">OI (contracts)</text>
+</svg>
+<p class="chart-note">Jis strike pe Call+Put combined OI sabse zyada (here ~430/500) = Max Pain magnet. 500 pe bada Call OI → 'DAB 500 se upar nahi jaayega — sellers delivery dene ready hain.'</p>
+</div>
+<div class="chart-card">
+<h3>Volume vs Open Interest — Biscuit Shop Example</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="110" y="100.0" width="110" height="180.0" fill="#e94560"/><text x="165.0" y="116.0" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">30</text><text x="165.0" y="302" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Volume</text><text x="165.0" y="320" text-anchor="middle" font-size="11" fill="#555">Aaj kitne contracts trade hue (repeat count)</text><rect x="270" y="220.0" width="110" height="60.0" fill="#2e8b57"/><text x="325.0" y="236.0" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">10</text><text x="325.0" y="302" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">Open Interest</text><text x="325.0" y="320" text-anchor="middle" font-size="11" fill="#555">Unique open contracts (total positions)</text>
+</svg>
+<p class="chart-note">10 biscuits beche-beche-wapas-laye (30 volume) par unique sirf 10 hain → OI 10. Ek hi contract se 1000 crore volume ho sakti hai, OI wahi rahega.</p>
+</div>
+<div class="chart-card">
+<h3>Put-Call Ratio (PCR) — Put OI ÷ Call OI</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="110" y="40.0" width="120" height="220.0" fill="#2e8b57"/><text x="170.0" y="56.0" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">2.00L</text><text x="170.0" y="282" text-anchor="middle" font-size="12" fill="#333">Put Sellers OI</text><rect x="270" y="205.0" width="120" height="55.0" fill="#e94560"/><text x="330.0" y="221.0" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">500</text><text x="330.0" y="282" text-anchor="middle" font-size="12" fill="#333">Call Sellers OI</text><text x="330" y="60" text-anchor="middle" font-size="22" fill="#0f3460" font-weight="bold">PCR = 4.0</text><text x="330" y="84" text-anchor="middle" font-size="13" fill="#2e8b57">PCR &gt; 1 → BULLISH</text><text x="330" y="104" text-anchor="middle" font-size="12" fill="#555">Zyada put sellers = market girne nahi denge</text><text x="14" y="140" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 140)">OI (contracts)</text>
+</svg>
+<p class="chart-note">Put sellers 2L vs Call sellers 500 → PCR 4 &gt; 1 → market neeche nahi jaayegi (big players control). PCR &lt; 1 → bearish. Note: zyada put sellers ≠ market girna — put seller upar/sideways chahata hai.</p>
+</div>
+,149.2 129.9,149.2 133.0,149.2 136.1,149.2 139.3,149.2 142.5,149.2 145.6,149.2 148.8,149.2 151.9,149.2 155.0,149.2 158.2,149.2 161.4,149.2 164.5,149.2 167.6,149.2 170.8,149.2 174.0,149.2 177.1,149.2 180.2,149.2 183.4,149.2 186.5,149.2 189.7,149.2 192.9,149.2 196.0,149.2 199.1,149.2 202.3,149.2 205.5,149.2 208.6,149.2 211.8,149.2 214.9,149.2 218.0,149.2 221.2,149.2 224.4,149.2 227.5,149.2 230.6,149.2 233.8,149.2 237.0,149.2 240.1,149.2 243.2,149.2 246.4,149.2 249.5,149.2 252.7,149.2 255.9,149.2 259.0,149.2 262.1,149.2 265.3,149.2 268.5,149.2 271.6,149.2 274.8,149.2 277.9,149.2 281.0,149.2 284.2,149.2 287.4,149.2 290.5,149.2 293.6,149.2 296.8,149.2 300.0,149.2 303.1,149.2 306.2,149.2 309.4,149.2 312.5,149.2 315.7,149.2 318.9,149.2 322.0,149.2 325.1,149.2 328.3,149.2 331.5,149.2 334.6,149.2 337.8,149.2 340.9,149.2 344.0,149.2 347.2,149.2 350.4,149.4 353.5,150.8 356.6,152.2 359.8,153.5 363.0,154.9 366.1,156.3 369.2,157.7 372.4,159.1 375.5,160.5 378.7,161.8 381.9,163.2 385.0,164.6 388.1,166.0 391.3,167.4 394.5,168.8 397.6,170.2 400.8,171.5 403.9,172.9 407.0,174.3 410.2,175.7 413.4,177.1 416.5,178.5 419.6,179.8 422.8,181.2 426.0,182.6 429.1,184.0 432.2,185.4 435.4,186.8 438.5,188.2 441.7,189.5 444.9,190.9 448.0,192.3 451.1,193.7 454.3,195.1 457.5,196.5 460.6,197.8 463.8,199.2 466.9,200.6 470.0,202.0 473.2,203.4 476.4,204.8 479.5,206.2 482.6,207.5 485.8,208.9 489.0,210.3 492.1,211.7 495.2,213.1 498.4,214.5 501.5,215.8 504.7,217.2 507.9,218.6 511.0,220.0 514.1,221.4 517.3,222.8 520.5,224.2 523.6,225.5 526.8,226.9 529.9,228.3 533.0,229.7 536.2,231.1 539.4,232.5 542.5,233.8 545.6,235.2 548.8,236.6 552.0,238.0 555.1,239.4 558.2,240.8 561.4,242.2 564.5,243.5 567.7,244.9 570.9,246.3 574.0,247.7 577.1,249.1 580.3,250.5 583.5,251.8 586.6,253.2 589.8,254.6 592.9,256.0 596.0,257.4 599.2,258.8 602.4,260.2 605.5,261.5 608.6,262.9 611.8,264.3 615.0,265.7 618.1,267.1 621.2,268.5 624.4,269.8 627.5,271.2 630.7,272.6 633.9,274.0 637.0,275.4 640.1,276.8 643.3,278.2 646.5,279.5 649.6,280.9 652.8,282.3 655.9,283.7 659.0,285.1 662.2,286.5 665.4,287.8 668.5,289.2 671.6,290.6 674.8,292.0 678.0,293.4 681.1,294.8 684.2,296.2 687.4,297.5 690.5,298.9 693.7,300.3 696.9,301.7 700.0,303.1" fill="none" stroke="#e94560" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Spot Price at Expiry</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">P&amp;L (Rs)</text><rect x="90" y="8" width="14" height="14" fill="#2e8b57"/><text x="110" y="19" font-size="12" fill="#2e8b57">Call Buyer (Long Call)</text><rect x="240" y="8" width="14" height="14" fill="#e94560"/><text x="260" y="19" font-size="12" fill="#e94560">Call Seller (Short Call)</text>
+</svg>
+<p class="chart-note">Max Loss = ₹1,000 (premium). Break-even = 430. Market upar → unlimited profit; flat/down → ₹1,000 loss.</p>
+</div>
+<div class="chart-card">
+<h3>Long Put Payoff — Buy 450 Put @ ₹13 (Lot 100)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="331.1" x2="700" y2="331.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="335.1" text-anchor="end" font-size="11" fill="#555">-7000</text><line x1="70" y1="320.4" x2="700" y2="320.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="324.4" text-anchor="end" font-size="11" fill="#555">-6500</text><line x1="70" y1="309.6" x2="700" y2="309.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="313.6" text-anchor="end" font-size="11" fill="#555">-6000</text><line x1="70" y1="298.8" x2="700" y2="298.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="302.8" text-anchor="end" font-size="11" fill="#555">-5500</text><line x1="70" y1="288.0" x2="700" y2="288.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="292.0" text-anchor="end" font-size="11" fill="#555">-5000</text><line x1="70" y1="277.2" x2="700" y2="277.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="281.2" text-anchor="end" font-size="11" fill="#555">-4500</text><line x1="70" y1="266.4" x2="700" y2="266.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="270.4" text-anchor="end" font-size="11" fill="#555">-4000</text><line x1="70" y1="255.6" x2="700" y2="255.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="259.6" text-anchor="end" font-size="11" fill="#555">-3500</text><line x1="70" y1="244.8" x2="700" y2="244.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="248.8" text-anchor="end" font-size="11" fill="#555">-3000</text><line x1="70" y1="234.0" x2="700" y2="234.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="238.0" text-anchor="end" font-size="11" fill="#555">-2500</text><line x1="70" y1="223.2" x2="700" y2="223.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="227.2" text-anchor="end" font-size="11" fill="#555">-2000</text><line x1="70" y1="212.4" x2="700" y2="212.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="216.4" text-anchor="end" font-size="11" fill="#555">-1500</text><line x1="70" y1="201.6" x2="700" y2="201.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="205.6" text-anchor="end" font-size="11" fill="#555">-1000</text><line x1="70" y1="190.8" x2="700" y2="190.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="194.8" text-anchor="end" font-size="11" fill="#555">-500</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="169.2" x2="700" y2="169.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="173.2" text-anchor="end" font-size="11" fill="#555">500</text><line x1="70" y1="158.4" x2="700" y2="158.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="162.4" text-anchor="end" font-size="11" fill="#555">1000</text><line x1="70" y1="147.6" x2="700" y2="147.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="151.6" text-anchor="end" font-size="11" fill="#555">1500</text><line x1="70" y1="136.8" x2="700" y2="136.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="140.8" text-anchor="end" font-size="11" fill="#555">2000</text><line x1="70" y1="126.0" x2="700" y2="126.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.0" text-anchor="end" font-size="11" fill="#555">2500</text><line x1="70" y1="115.2" x2="700" y2="115.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="119.2" text-anchor="end" font-size="11" fill="#555">3000</text><line x1="70" y1="104.4" x2="700" y2="104.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="108.4" text-anchor="end" font-size="11" fill="#555">3500</text><line x1="70" y1="93.6" x2="700" y2="93.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="97.6" text-anchor="end" font-size="11" fill="#555">4000</text><line x1="70" y1="82.8" x2="700" y2="82.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="86.8" text-anchor="end" font-size="11" fill="#555">4500</text><line x1="70" y1="72.0" x2="700" y2="72.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="76.0" text-anchor="end" font-size="11" fill="#555">5000</text><line x1="70" y1="61.2" x2="700" y2="61.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="65.2" text-anchor="end" font-size="11" fill="#555">5500</text><line x1="70" y1="50.4" x2="700" y2="50.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="54.4" text-anchor="end" font-size="11" fill="#555">6000</text><line x1="70" y1="39.6" x2="700" y2="39.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="43.6" text-anchor="end" font-size="11" fill="#555">6500</text><line x1="70" y1="28.9" x2="700" y2="28.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="32.9" text-anchor="end" font-size="11" fill="#555">7000</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#333" stroke-width="1.5"/><text x="62" y="176.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">380</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">402.5</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">425</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">447.5</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">470</text><line x1="560.0" y1="20" x2="560.0" y2="340" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><text x="560.0" y="14" text-anchor="middle" font-size="11" fill="#666">Strike 450</text><line x1="469.0" y1="20" x2="469.0" y2="340" stroke="#e94560" stroke-width="1.5" stroke-dasharray="3,3"/><text x="469.0" y="370" text-anchor="middle" font-size="10" fill="#c00">BE 437</text><polyline points="70.0,56.9 73.1,57.9 76.3,58.9 79.5,59.8 82.6,60.8 85.8,61.8 88.9,62.8 92.0,63.7 95.2,64.7 98.4,65.7 101.5,66.6 104.6,67.6 107.8,68.6 111.0,69.6 114.1,70.5 117.2,71.5 120.4,72.5 123.5,73.4 126.7,74.4 129.9,75.4 133.0,76.4 136.1,77.3 139.3,78.3 142.5,79.3 145.6,80.2 148.8,81.2 151.9,82.2 155.0,83.2 158.2,84.1 161.4,85.1 164.5,86.1 167.6,87.0 170.8,88.0 174.0,89.0 177.1,90.0 180.2,90.9 183.4,91.9 186.5,92.9 189.7,93.8 192.9,94.8 196.0,95.8 199.1,96.8 202.3,97.7 205.5,98.7 208.6,99.7 211.8,100.6 214.9,101.6 218.0,102.6 221.2,103.6 224.4,104.5 227.5,105.5 230.6,106.5 233.8,107.4 237.0,108.4 240.1,109.4 243.2,110.4 246.4,111.3 249.5,112.3 252.7,113.3 255.9,114.3 259.0,115.2 262.1,116.2 265.3,117.2 268.5,118.1 271.6,119.1 274.8,120.1 277.9,121.1 281.0,122.0 284.2,123.0 287.4,124.0 290.5,124.9 293.6,125.9 296.8,126.9 300.0,127.9 303.1,128.8 306.2,129.8 309.4,130.8 312.5,131.7 315.7,132.7 318.9,133.7 322.0,134.7 325.1,135.6 328.3,136.6 331.5,137.6 334.6,138.5 337.8,139.5 340.9,140.5 344.0,141.5 347.2,142.4 350.4,143.4 353.5,144.4 356.6,145.3 359.8,146.3 363.0,147.3 366.1,148.3 369.2,149.2 372.4,150.2 375.5,151.2 378.7,152.1 381.9,153.1 385.0,154.1 388.1,155.1 391.3,156.0 394.5,157.0 397.6,158.0 400.8,158.9 403.9,159.9 407.0,160.9 410.2,161.9 413.4,162.8 416.5,163.8 419.6,164.8 422.8,165.7 426.0,166.7 429.1,167.7 432.2,168.7 435.4,169.6 438.5,170.6 441.7,171.6 444.9,172.6 448.0,173.5 451.1,174.5 454.3,175.5 457.5,176.4 460.6,177.4 463.8,178.4 466.9,179.4 470.0,180.3 473.2,181.3 476.4,182.3 479.5,183.2 482.6,184.2 485.8,185.2 489.0,186.2 492.1,187.1 495.2,188.1 498.4,189.1 501.5,190.0 504.7,191.0 507.9,192.0 511.0,193.0 514.1,193.9 517.3,194.9 520.5,195.9 523.6,196.8 526.8,197.8 529.9,198.8 533.0,199.8 536.2,200.7 539.4,201.7 542.5,202.7 545.6,203.6 548.8,204.6 552.0,205.6 555.1,206.6 558.2,207.5 561.4,208.1 564.5,208.1 567.7,208.1 570.9,208.1 574.0,208.1 577.1,208.1 580.3,208.1 583.5,208.1 586.6,208.1 589.8,208.1 592.9,208.1 596.0,208.1 599.2,208.1 602.4,208.1 605.5,208.1 608.6,208.1 611.8,208.1 615.0,208.1 618.1,208.1 621.2,208.1 624.4,208.1 627.5,208.1 630.7,208.1 633.9,208.1 637.0,208.1 640.1,208.1 643.3,208.1 646.5,208.1 649.6,208.1 652.8,208.1 655.9,208.1 659.0,208.1 662.2,208.1 665.4,208.1 668.5,208.1 671.6,208.1 674.8,208.1 678.0,208.1 681.1,208.1 684.2,208.1 687.4,208.1 690.5,208.1 693.7,208.1 696.9,208.1 700.0,208.1" fill="none" stroke="#2e8b57" stroke-width="3"/><polyline points="70.0,303.1 73.1,302.1 76.3,301.1 79.5,300.2 82.6,299.2 85.8,298.2 88.9,297.2 92.0,296.3 95.2,295.3 98.4,294.3 101.5,293.4 104.6,292.4 107.8,291.4 111.0,290.4 114.1,289.5 117.2,288.5 120.4,287.5 123.5,286.6 126.7,285.6 129.9,284.6 133.0,283.6 136.1,282.7 139.3,281.7 142.5,280.7 145.6,279.8 148.8,278.8 151.9,277.8 155.0,276.8 158.2,275.9 161.4,274.9 164.5,273.9 167.6,273.0 170.8,272.0 174.0,271.0 177.1,270.0 180.2,269.1 183.4,268.1 186.5,267.1 189.7,266.2 192.9,265.2 196.0,264.2 199.1,263.2 202.3,262.3 205.5,261.3 208.6,260.3 211.8,259.4 214.9,258.4 218.0,257.4 221.2,256.4 224.4,255.5 227.5,254.5 230.6,253.5 233.8,252.6 237.0,251.6 240.1,250.6 243.2,249.6 246.4,248.7 249.5,247.7 252.7,246.7 255.9,245.7 259.0,244.8 262.1,243.8 265.3,242.8 268.5,241.9 271.6,240.9 274.8,239.9 277.9,238.9 281.0,238.0 284.2,237.0 287.4,236.0 290.5,235.1 293.6,234.1 296.8,233.1 300.0,232.1 303.1,231.2 306.2,230.2 309.4,229.2 312.5,228.3 315.7,227.3 318.9,226.3 322.0,225.3 325.1,224.4 328.3,223.4 331.5,222.4 334.6,221.5 337.8,220.5 340.9,219.5 344.0,218.5 347.2,217.6 350.4,216.6 353.5,215.6 356.6,214.7 359.8,213.7 363.0,212.7 366.1,211.7 369.2,210.8 372.4,209.8 375.5,208.8 378.7,207.9 381.9,206.9 385.0,205.9 388.1,204.9 391.3,204.0 394.5,203.0 397.6,202.0 400.8,201.1 403.9,200.1 407.0,199.1 410.2,198.1 413.4,197.2 416.5,196.2 419.6,195.2 422.8,194.3 426.0,193.3 429.1,192.3 432.2,191.3 435.4,190.4 438.5,189.4 441.7,188.4 444.9,187.4 448.0,186.5 451.1,185.5 454.3,184.5 457.5,183.6 460.6,182.6 463.8,181.6 466.9,180.6 470.0,179.7 473.2,178.7 476.4,177.7 479.5,176.8 482.6,175.8 485.8,174.8 489.0,173.8 492.1,172.9 495.2,171.9 498.4,170.9 501.5,170.0 504.7,169.0 507.9,168.0 511.0,167.0 514.1,166.1 517.3,165.1 520.5,164.1 523.6,163.2 526.8,162.2 529.9,161.2 533.0,160.2 536.2,159.3 539.4,158.3 542.5,157.3 545.6,156.4 548.8,155.4 552.0,154.4 555.1,153.4 558.2,152.5 561.4,151.9 564.5,151.9 567.7,151.9 570.9,151.9 574.0,151.9 577.1,151.9 580.3,151.9 583.5,151.9 586.6,151.9 589.8,151.9 592.9,151.9 596.0,151.9 599.2,151.9 602.4,151.9 605.5,151.9 608.6,151.9 611.8,151.9 615.0,151.9 618.1,151.9 621.2,151.9 624.4,151.9 627.5,151.9 630.7,151.9 633.9,151.9 637.0,151.9 640.1,151.9 643.3,151.9 646.5,151.9 649.6,151.9 652.8,151.9 655.9,151.9 659.0,151.9 662.2,151.9 665.4,151.9 668.5,151.9 671.6,151.9 674.8,151.9 678.0,151.9 681.1,151.9 684.2,151.9 687.4,151.9 690.5,151.9 693.7,151.9 696.9,151.9 700.0,151.9" fill="none" stroke="#e94560" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Spot Price at Expiry</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">P&amp;L (Rs)</text><rect x="90" y="8" width="14" height="14" fill="#2e8b57"/><text x="110" y="19" font-size="12" fill="#2e8b57">Put Buyer (Long Put)</text><rect x="240" y="8" width="14" height="14" fill="#e94560"/><text x="260" y="19" font-size="12" fill="#e94560">Put Seller (Short Put)</text>
+</svg>
+<p class="chart-note">Max Loss = ₹1,300. Break-even = 437 (strike − premium). Market neeche → profit; flat/up → premium loss. Put seller ka loss LARGE par LIMITED (stock ₹0 se neeche nahi ja sakta).</p>
+</div>
+text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">-60</text><line x1="175.0" y1="20" x2="175.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="175.0" y="356" text-anchor="middle" font-size="11" fill="#555">-40</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">-20</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555">20</text><line x1="595.0" y1="20" x2="595.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="595.0" y="356" text-anchor="middle" font-size="11" fill="#555">40</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">60</text><text x="185.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">OTM</text><text x="385.0" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ATM</text><text x="584.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ITM</text><polyline points="70.0,304.3 73.2,302.9 76.3,301.4 79.4,299.9 82.6,298.3 85.8,296.7 88.9,295.0 92.1,293.3 95.2,291.5 98.3,289.7 101.5,287.8 104.7,285.9 107.8,284.0 110.9,282.0 114.1,280.0 117.2,277.9 120.4,275.7 123.6,273.6 126.7,271.3 129.8,269.1 133.0,266.7 136.2,264.4 139.3,261.9 142.4,259.5 145.6,257.0 148.8,254.4 151.9,251.9 155.1,249.2 158.2,246.6 161.3,243.8 164.5,241.1 167.7,238.3 170.8,235.5 173.9,232.6 177.1,229.7 180.2,226.8 183.4,223.8 186.6,220.9 189.7,217.8 192.8,214.8 196.0,211.7 199.2,208.6 202.3,205.5 205.4,202.4 208.6,199.3 211.8,196.1 214.9,192.9 218.0,189.7 221.2,186.6 224.3,183.4 227.5,180.2 230.7,177.0 233.8,173.8 237.0,170.6 240.1,167.4 243.2,164.2 246.4,161.1 249.6,157.9 252.7,154.8 255.8,151.7 259.0,148.6 262.1,145.6 265.3,142.6 268.4,139.6 271.6,136.6 274.8,133.7 277.9,130.9 281.1,128.0 284.2,125.3 287.4,122.6 290.5,119.9 293.7,117.3 296.8,114.7 299.9,112.2 303.1,109.8 306.2,107.4 309.4,105.1 312.6,102.9 315.7,100.8 318.8,98.7 322.0,96.7 325.1,94.8 328.3,93.0 331.4,91.3 334.6,89.6 337.8,88.1 340.9,86.6 344.1,85.2 347.2,84.0 350.4,82.8 353.5,81.7 356.7,80.7 359.8,79.8 362.9,79.0 366.1,78.4 369.2,77.8 372.4,77.3 375.6,76.9 378.7,76.7 381.9,76.5 385.0,76.5 388.1,76.5 391.3,76.7 394.4,76.9 397.6,77.3 400.8,77.8 403.9,78.4 407.1,79.0 410.2,79.8 413.4,80.7 416.5,81.7 419.6,82.8 422.8,84.0 425.9,85.2 429.1,86.6 432.2,88.1 435.4,89.6 438.6,91.3 441.7,93.0 444.9,94.8 448.0,96.7 451.1,98.7 454.3,100.8 457.4,102.9 460.6,105.1 463.8,107.4 466.9,109.8 470.1,112.2 473.2,114.7 476.4,117.3 479.5,119.9 482.6,122.6 485.8,125.3 488.9,128.0 492.1,130.9 495.2,133.7 498.4,136.6 501.6,139.6 504.7,142.6 507.9,145.6 511.0,148.6 514.1,151.7 517.3,154.8 520.5,157.9 523.6,161.1 526.8,164.2 529.9,167.4 533.0,170.6 536.2,173.8 539.4,177.0 542.5,180.2 545.6,183.4 548.8,186.6 552.0,189.7 555.1,192.9 558.2,196.1 561.4,199.3 564.5,202.4 567.7,205.5 570.9,208.6 574.0,211.7 577.1,214.8 580.3,217.8 583.4,220.9 586.6,223.8 589.8,226.8 592.9,229.7 596.1,232.6 599.2,235.5 602.4,238.3 605.5,241.1 608.6,243.8 611.8,246.6 615.0,249.2 618.1,251.9 621.2,254.4 624.4,257.0 627.5,259.5 630.7,261.9 633.9,264.4 637.0,266.7 640.1,269.1 643.3,271.3 646.4,273.6 649.6,275.7 652.8,277.9 655.9,280.0 659.1,282.0 662.2,284.0 665.4,285.9 668.5,287.8 671.6,289.7 674.8,291.5 677.9,293.3 681.1,295.0 684.2,296.7 687.4,298.3 690.5,299.9 693.7,301.4 696.9,302.9 700.0,304.3" fill="none" stroke="#e94560" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Moneyness (Spot − Strike)</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">Time Value / Theta</text>
+</svg>
+<p class="chart-note">ATM pe theta MAXIMUM. Dono taraf (OTM aur ITM) girta hai — Put-Call Parity kehte hain ki ITM & OTM ka theta similar rehta hai.</p>
+</div>
+<div class="chart-card">
+<h3>Delta vs Moneyness — ATM = 0.5, ITM 0.8–0.9, OTM 0.1–0.3</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="194.5" x2="700" y2="194.5" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="198.5" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="49.1" x2="700" y2="49.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="53.1" text-anchor="end" font-size="11" fill="#555">1</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">-60</text><line x1="175.0" y1="20" x2="175.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="175.0" y="356" text-anchor="middle" font-size="11" fill="#555">-40</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">-20</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555">20</text><line x1="595.0" y1="20" x2="595.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="595.0" y="356" text-anchor="middle" font-size="11" fill="#555">40</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">60</text><text x="185.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">OTM</text><text x="385.0" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ATM</text><text x="584.5" y="36" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">ITM</text><line x1="70" y1="194.5" x2="700" y2="194.5" stroke="#888" stroke-dasharray="4,4"/><text x="74" y="189.5" font-size="11" fill="#555">Delta 0.5 (ATM)</text><polyline points="70.0,330.0 73.2,329.7 76.3,329.3 79.4,329.0 82.6,328.6 85.8,328.2 88.9,327.9 92.1,327.5 95.2,327.1 98.3,326.6 101.5,326.2 104.7,325.8 107.8,325.3 110.9,324.8 114.1,324.3 117.2,323.8 120.4,323.3 123.6,322.8 126.7,322.2 129.8,321.7 133.0,321.1 136.2,320.5 139.3,319.9 142.4,319.3 145.6,318.6 148.8,317.9 151.9,317.2 155.1,316.5 158.2,315.8 161.3,315.1 164.5,314.3 167.7,313.5 170.8,312.7 173.9,311.8 177.1,311.0 180.2,310.1 183.4,309.2 186.6,308.3 189.7,307.3 192.8,306.3 196.0,305.3 199.2,304.3 202.3,303.2 205.4,302.2 208.6,301.0 211.8,299.9 214.9,298.7 218.0,297.5 221.2,296.3 224.3,295.1 227.5,293.8 230.7,292.5 233.8,291.1 237.0,289.8 240.1,288.4 243.2,286.9 246.4,285.5 249.6,284.0 252.7,282.5 255.8,280.9 259.0,279.3 262.1,277.7 265.3,276.0 268.4,274.4 271.6,272.7 274.8,270.9 277.9,269.2 281.1,267.3 284.2,265.5 287.4,263.7 290.5,261.8 293.7,259.8 296.8,257.9 299.9,255.9 303.1,253.9 306.2,251.9 309.4,249.8 312.6,247.7 315.7,245.6 318.8,243.5 322.0,241.3 325.1,239.1 328.3,236.9 331.4,234.7 334.6,232.4 337.8,230.2 340.9,227.9 344.1,225.6 347.2,223.3 350.4,220.9 353.5,218.6 356.7,216.2 359.8,213.8 362.9,211.4 366.1,209.0 369.2,206.6 372.4,204.2 375.6,201.8 378.7,199.4 381.9,197.0 385.0,194.5 388.1,192.1 391.3,189.7 394.4,187.3 397.6,184.9 400.8,182.5 403.9,180.0 407.1,177.7 410.2,175.3 413.4,172.9 416.5,170.5 419.6,168.2 422.8,165.8 425.9,163.5 429.1,161.2 432.2,158.9 435.4,156.7 438.6,154.4 441.7,152.2 444.9,150.0 448.0,147.8 451.1,145.6 454.3,143.5 457.4,141.4 460.6,139.3 463.8,137.2 466.9,135.2 470.1,133.2 473.2,131.2 476.4,129.2 479.5,127.3 482.6,125.4 485.8,123.6 488.9,121.7 492.1,119.9 495.2,118.2 498.4,116.4 501.6,114.7 504.7,113.0 507.9,111.4 511.0,109.8 514.1,108.2 517.3,106.6 520.5,105.1 523.6,103.6 526.8,102.2 529.9,100.7 533.0,99.3 536.2,98.0 539.4,96.6 542.5,95.3 545.6,94.0 548.8,92.8 552.0,91.6 555.1,90.4 558.2,89.2 561.4,88.1 564.5,86.9 567.7,85.9 570.9,84.8 574.0,83.8 577.1,82.8 580.3,81.8 583.4,80.8 586.6,79.9 589.8,79.0 592.9,78.1 596.1,77.2 599.2,76.4 602.4,75.6 605.5,74.8 608.6,74.0 611.8,73.3 615.0,72.6 618.1,71.8 621.2,71.2 624.4,70.5 627.5,69.8 630.7,69.2 633.9,68.6 637.0,68.0 640.1,67.4 643.3,66.8 646.4,66.3 649.6,65.8 652.8,65.3 655.9,64.7 659.1,64.3 662.2,63.8 665.4,63.3 668.5,62.9 671.6,62.5 674.8,62.0 677.9,61.6 681.1,61.2 684.2,60.9 687.4,60.5 690.5,60.1 693.7,59.8 696.9,59.4 700.0,59.1" fill="none" stroke="#2e8b57" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Moneyness (Spot − Strike)</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">Call Delta</text>
+</svg>
+<p class="chart-note">Call delta positive (0→1), Put delta negative (0→−1). ATM hamesha ~0.5. Put seller ko isi delta ka ulta (positive) milta hai.</p>
+</div>
+<div class="chart-card">
+<h3>Time Value Decay (Theta) — 30 May se 28 June Expiry</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">1</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">2</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">3</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">4</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">5</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">6</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">30</text><line x1="595.0" y1="20" x2="595.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="595.0" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555">20</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">15</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">10</text><line x1="175.0" y1="20" x2="175.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="175.0" y="356" text-anchor="middle" font-size="11" fill="#555">5</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><polyline points="70.0,73.3 73.2,84.4 76.3,90.2 79.5,94.8 82.6,98.8 85.8,102.5 88.9,105.9 92.0,109.0 95.2,112.0 98.4,114.8 101.5,117.5 104.7,120.1 107.8,122.6 111.0,125.1 114.1,127.4 117.2,129.7 120.4,131.9 123.5,134.1 126.7,136.2 129.8,138.3 133.0,140.3 136.1,142.3 139.3,144.3 142.4,146.2 145.6,148.1 148.8,149.9 151.9,151.7 155.0,153.5 158.2,155.3 161.3,157.0 164.5,158.8 167.7,160.5 170.8,162.1 173.9,163.8 177.1,165.4 180.2,167.0 183.4,168.6 186.6,170.2 189.7,171.8 192.8,173.3 196.0,174.9 199.2,176.4 202.3,177.9 205.4,179.4 208.6,180.8 211.8,182.3 214.9,183.7 218.0,185.2 221.2,186.6 224.3,188.0 227.5,189.4 230.7,190.8 233.8,192.2 237.0,193.5 240.1,194.9 243.2,196.2 246.4,197.6 249.6,198.9 252.7,200.2 255.8,201.5 259.0,202.8 262.1,204.1 265.3,205.4 268.4,206.7 271.6,207.9 274.8,209.2 277.9,210.4 281.1,211.7 284.2,212.9 287.4,214.2 290.5,215.4 293.7,216.6 296.8,217.8 299.9,219.0 303.1,220.2 306.2,221.4 309.4,222.6 312.6,223.7 315.7,224.9 318.8,226.1 322.0,227.2 325.1,228.4 328.3,229.5 331.4,230.7 334.6,231.8 337.8,232.9 340.9,234.0 344.1,235.2 347.2,236.3 350.4,237.4 353.5,238.5 356.7,239.6 359.8,240.7 362.9,241.8 366.1,242.9 369.2,243.9 372.4,245.0 375.6,246.1 378.7,247.1 381.9,248.2 385.0,249.3 388.1,250.3 391.3,251.4 394.4,252.4 397.6,253.5 400.8,254.5 403.9,255.5 407.1,256.6 410.2,257.6 413.4,258.6 416.5,259.6 419.6,260.6 422.8,261.6 425.9,262.7 429.1,263.7 432.2,264.7 435.4,265.7 438.6,266.6 441.7,267.6 444.9,268.6 448.0,269.6 451.1,270.6 454.3,271.6 457.4,272.5 460.6,273.5 463.8,274.5 466.9,275.4 470.1,276.4 473.2,277.4 476.4,278.3 479.5,279.3 482.6,280.2 485.8,281.2 488.9,282.1 492.1,283.0 495.2,284.0 498.4,284.9 501.6,285.8 504.7,286.8 507.9,287.7 511.0,288.6 514.1,289.5 517.3,290.5 520.5,291.4 523.6,292.3 526.8,293.2 529.9,294.1 533.0,295.0 536.2,295.9 539.4,296.8 542.5,297.7 545.6,298.6 548.8,299.5 552.0,300.4 555.1,301.3 558.2,302.2 561.4,303.1 564.5,303.9 567.7,304.8 570.9,305.7 574.0,306.6 577.1,307.5 580.3,308.3 583.4,309.2 586.6,310.1 589.8,310.9 592.9,311.8 596.1,312.7 599.2,313.5 602.4,314.4 605.5,315.2 608.6,316.1 611.8,316.9 615.0,317.8 618.1,318.6 621.2,319.5 624.4,320.3 627.5,321.2 630.7,322.0 633.9,322.8 637.0,323.7 640.1,324.5 643.3,325.3 646.4,326.2 649.6,327.0 652.8,327.8 655.9,328.6 659.1,329.5 662.2,330.3 665.4,331.1 668.5,331.9 671.6,332.7 674.8,333.5 677.9,334.4 681.1,335.2 684.2,336.0 687.4,336.8 690.5,337.6 693.7,338.4 696.9,339.2 700.0,340.0" fill="none" stroke="#e94560" stroke-width="3"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Days to Expiry (30 → 0)</text><text x="14" y="180.0" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 180.0)">Time Value (Rs)</text>
+</svg>
+<p class="chart-note">Abhi ₹5 → 10 din baad ₹3 → ₹2 → ₹1 → Expiry pe 0. Time ke saath saare options ka time value khatam — isi ko seller khaata hai.</p>
+</div>
+xt x="305.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">450 Call</text><text x="305.0" y="124" text-anchor="middle" font-size="13" fill="#fff">ATM</text><rect x="390" y="40" width="90" height="120" fill="#e94560" rx="6"/><text x="435.0" y="100" text-anchor="middle" font-size="15" fill="#fff" font-weight="bold">470 Call</text><text x="435.0" y="124" text-anchor="middle" font-size="13" fill="#fff">OTM</text><line x1="110" y1="240" x2="440" y2="240" stroke="#333" stroke-width="2"/><text x="275" y="230" text-anchor="middle" font-size="13" fill="#333">DAB Price = ₹450</text><text x="14" y="110" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 110)">Strike</text><text x="14" y="240" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90 14 240)">Spot</text>
+</svg>
+<p class="chart-note">Call ka case ulta: strike SPOT se neeche hai → ITM (₹430 pe buy karne ka right jabki market ₹450).</p>
+</div>
+
+
+<p>Example puri class mein: <b>DAB (Dabur)</b>. DAB ka current price ~₹450. Ab teen tarah ke strikes:</p>
+
+<h3>2.1 Put Option ke Strikes (DAB @ ₹450)</h3>
+<table>
+<tr><th>Strike</th><th>Type</th><th>Kyun?</th></tr>
+<tr><td>₹470 Put</td><td><b>ITM</b> (In the Money)</td><td>Strike (470) &gt; current price (450). Agar abhi exercise karu to ₹470 pe sell ho sakta hai jabki market ₹450 hai → intrinsic value hai.</td></tr>
+<tr><td>₹450 Put</td><td><b>ATM</b> (At the Money)</td><td>Strike = current market price.</td></tr>
+<tr><td>₹420 Put</td><td><b>OTM</b> (Out of the Money)</td><td>Strike (420) &lt; current price (450). Koi intrinsic value nahi.</td></tr>
+</table>
+
+<div class="calc">
+<b>Logical check (why 470 put can't be ₹2):</b>
+Market ₹450, 470 put ₹2 ho toh — buy put ₹2, buy stock ₹450, exercise karke sell ₹470 → ₹18 risk-free profit!
+No Free Lunch Theorem → aisi cheez market mein exist nahi kar sakti. Isliye 470 put ki minimum value = ₹20 (470 − 450).
+</div>
+
+<h3>2.2 Call Option ke Strikes (DAB @ ₹450)</h3>
+<table>
+<tr><th>Strike</th><th>Type</th><th>Kyun?</th></tr>
+<tr><td>₹430 Call</td><td><b>ITM</b></td><td>Strike (430) &lt; current price (450). Buy karne ka right ₹430 pe jabki market ₹450 → intrinsic value ₹20.</td></tr>
+<tr><td>₹450 Call</td><td><b>ATM</b></td><td>Strike = current price.</td></tr>
+<tr><td>₹470 Call</td><td><b>OTM</b></td><td>Strike (470) &gt; current price (450).</td></tr>
+</table>
+
+<div class="note"><b>Easy memory:</b> <b>Put</b> ka case = upar wali ITM. <b>Call</b> ka case = ulta, neeche wali ITM.</div>
+
+<h3>2.3 Moneyness ki Terms</h3>
+<ul>
+  <li><b>Moneyness = Intrinsic Value</b>. If moneyness 0 → OTM/ATM; if positive → ITM.</li>
+  <li><b>ITM contract</b> = usme intrinsic value hai. Isliye "In the Money".</li>
+  <li>Spot-strike gap pe options 10-10 ke multiples mein hote hain (ya 5-5), isliye ATM ko round-off karke dekhte hain.</li>
+  <li>Indian markets mein <b>ITM contracts usually illiquid</b> hote hain. Big players ki strategies ATM + OTM pe chalti hain (market-making, next-level strategies).</li>
+</ul>
+
+<!-- ==================== 3. INTRINSIC vs TIME ==================== -->
+<h2 id="intrinsic">3. Intrinsic Value vs Time Value</h2>
+
+<p>Har option price mein <b>do components</b> hote hain: <b>Intrinsic Value (IV)</b> + <b>Time Value (TV)</b>.</p>
+
+<div class="calc">
+<b>Formulas:</b><br>
+Put  → IV = max(Strike Price − Current Price, 0)<br>
+Call → IV = max(Current Price − Strike Price, 0)<br><br>
+<b>IV kabhi negative nahi ho sakti</b> — ya toh zero, ya positive. Isliye "max(x, 0)".
+</div>
+
+<h3>3.1 Live DAB Example (June Futures ₹451 basis)</h3>
+<p>DAB ka June future ₹451 pe close hua. <b>Options ki saari calculation future price ke respect mein hoti hai</b> (stock nahi), kyunki future ~0.5% premium hota hai. Toh current market price = ₹451.</p>
+
+<table>
+<tr><th>Contract</th><th>Total Price</th><th>Intrinsic Value</th><th>Time Value</th><th>Type</th></tr>
+<tr><td>440 Put</td><td>₹8.55</td><td>₹0</td><td>₹8.55</td><td>ATM-ish / OTM</td></tr>
+<tr><td>450 Put</td><td>₹13.50</td><td>₹0 (≈)</td><td>₹13.50</td><td>ATM</td></tr>
+<tr><td>460 Put</td><td>₹19.75</td><td>₹9 (460−451)</td><td>₹10.75</td><td>ITM</td></tr>
+</table>
+
+<div class="win"><b>Key Observation:</b> Time value sabse <b>zyada ATM</b> ka hota hai, usse kam ITM ka, aur OTM bhi kam. Yehi se "Theta ATM pe maximum" waali baat aati hai.</div>
+
+<h3>3.2 Time Value vs Moneyness Graph (Concept)</h3>
+<ul>
+  <li>X-axis: Moneyness (OTM — ATM — ITM), Y-axis: Time Value/Theta.</li>
+  <li>ATM pe theta <b>maximum</b>. Dono taraf (OTM &amp; ITM) girta jata hai.</li>
+  <li><b>Kyun ATM pe max?</b> Fear/worry sabse zyada border pe hota hai (17 saal ke bache ko gaadi + high insurance). OTM abhi door hai toh risk kam. ITM mein intrinsic value already locked hai.</li>
+  <li><b>Put-Call Parity</b> ensure karti hai ki ITM &amp; OTM ka theta similar rahe (advanced concept, aage/next class).</li>
+</ul>
+
+<div class="note"><b>Time Value decay:</b> 30 May se 28 June expiry tak — theta ₹5 abhi, 10 din baad ₹3, phir ₹2, ₹1, expiry pe 0. <b>"That's why option sellers usually always make money — unhe waiting ke paise milte hain (theta unki jeb mein paise daalta hai)."</b></div>
+
+<h3>3.3 Practice Question (Teacher ne class mein diya)</h3>
+<p>Assumption: Time value fixed — ATM ₹5, OTM/ITM ₹3. DAB Future = ₹453. Calculate market prices:</p>
+<div class="calc">
+<b>PUT (Future ₹453 → 450 ko ATM round-off):</b><br>
+450 Put (ATM) → TV ₹5 + IV ₹0 = <b>₹5</b><br>
+430 Put (OTM) → TV ₹3 + IV ₹0 = <b>₹3</b><br>
+440 Put (ITM maana) → TV ₹3 + IV ₹7 = <b>₹10</b><br><br>
+<b>CALL:</b><br>
+450 Call (ITM, 453&gt;450) → TV ₹3 + IV ₹3 = <b>₹6</b><br>
+430 Call (Deep ITM) → TV ₹3 + IV ₹23 = <b>₹26</b><br>
+460 Call (OTM) → TV ₹3 + IV ₹0 = <b>₹3</b>
+</div>
+<p><b>Answers (teacher confirmed):</b> Put = <b>5, 3, 10</b> &nbsp;|&nbsp; Call = <b>6, 26, 3</b>. Agar aapne round-off (450=ATM) karke kuch paas-2 ka answer diya, concept samajh liya matlab sahi. <i>(Note: teacher ke numbers thode round-off the — 450 ko ATM maana kyunki future 453 hai. Ek kahawat yaad rakho: OTM ki value ZERO nahi hoti — usme time value hoti hai.)</i></p>
+
+<div class="rule"><b>Common galti (teacher ne warn kiya):</b> "Kai log option ki value zero kar dete hain jab wo OTM ho — <b>GALAT!</b> OTM ki value zero nahi hoti, usme time value hoti hai."</div>
+
+<!-- ==================== 4. PAYOFF ==================== -->
+<h2 id="payoff" class="section-break">4. Payoff — 4 Legs (Long/Short Call &amp; Put)</h2>
+
+<p><b>Every position is built on 4 legs.</b> Har strategy in char payoff ke combination se banti hai.</p>
+
+<table>
+<tr><th>Leg</th><th>Matlab</th><th>Risk</th><th>Profit</th><th>Kis direction pe profit</th></tr>
+<tr><td><b>Long Call</b> (Buy Call)</td><td>Premium pay karke call buy</td><td>Limited (premium)</td><td>Unlimited (upar)</td><td>Market upar (big up move)</td></tr>
+<tr><td><b>Short Call</b> (Sell Call)</td><td>Call sell (covered ya naked)</td><td><b>Unlimited</b> (stock upar ja sakta hai)</td><td>Limited (premium)</td><td>Flat / down</td></tr>
+<tr><td><b>Long Put</b> (Buy Put)</td><td>Insurance — premium pay</td><td>Limited (premium)</td><td>Unlimited (neeche)</td><td>Market girne pe</td></tr>
+<tr><td><b>Short Put</b> (Sell Put)</td><td>Premium collect</td><td><b>Large</b> (par unlimited nahi — stock 0 se upar hi rukega)</td><td>Limited (premium)</td><td>Flat / up</td></tr>
+</table>
+
+<div class="note"><b>Short Put vs Short Call risk difference:</b> Stock ₹0 bhi ho jaye, put seller ka max loss = strike × lot size (limited number, e.g. ₹5 lakh). Par stock upar <b>10,000x</b> bhi jaa sakta hai (hypothetically) → call seller ka loss crores tak. Isliye <b>call seller = unlimited risk</b>, <b>put seller = large par limited risk</b>.</div>
+
+<h3>4.1 Long Call Example (Math)</h3>
+<div class="calc">
+Buy 420 Call @ ₹10, Lot size 100.<br>
+Max Loss = ₹10 × 100 = <b>₹1,000</b> (premium gone)<br>
+Max Profit = Unlimited (market upar badhta jaye)<br>
+Break-even = Strike + Premium = 420 + 10 = <b>₹430</b><br><br>
+Market 430 tak aayi → no profit no loss.<br>
+Market 430 se upar → profit.<br>
+Market 420 se neeche (ya 430 tak) → loss, max ₹1,000.
+</div>
+<p><b>Kab use karein:</b> jab trader ko lagta hai bada rally aane wala hai. <i>(Note: Hemant Jain call buy nahi karta.)</i></p>
+
+<h3>4.2 Short Put Example (Seller's Bread &amp; Butter)</h3>
+<div class="win">"Ye meri bread &amp; butter hai — pichhle 5 saal se yahi karta hoon." — Short put: premium collect. Market upar, neeche (halka), ya sideways — sab mein profit. Sirf tab loss jab market strike se kaafi neeche gir jaye.</div>
+
+<h3>4.3 Short Call Example</h3>
+<p>Stock ₹380 pe buy kiya. 440 Call sell kiya — "agar market ₹440 tak gaya, delivery dene mein khush hoon". Agar market 480 gayi aur share nahi hai paas, toh ₹480 mein buy karke ₹440 pe delivery deni padegi → loss.</p>
+
+<div class="note"><b>Why 99% of retailers are option buyers:</b> hero-zero khelte hain — ₹2 ka option buy karo, ₹100 ho jaye toh maza. <i>(But buyer ka win-probability kam hota hai; seller theta se win karta hai.)</i></div>
+
+<!-- ==================== 5. GREEKS ==================== -->
+<h2 id="greeks" class="section-break">5. Greeks — Delta, Theta, Gamma, Vega, Rho</h2>
+
+<p>Option premium <b>ek nahi, paanch alag-alag taqaton</b> se hilta hai. Inhi ko "Greeks" kehte hain.</p>
+
+<table>
+<tr><th>Greek</th><th>Full Form / Matlab</th><th>Rule of Thumb</th></tr>
+<tr><td><b>Delta</b></td><td>Sensitivity to change in <b>stock price</b> (₹1 stock move → option kitna move)</td><td>ATM = 0.5 (always), ITM = 0.8–0.9, OTM = 0.1–0.3</td></tr>
+<tr><td><b>Theta</b></td><td>Change in option price because <b>1 day passed</b> (time value of money)</td><td>ATM max (e.g. 0.30), ITM/OTM kam (~0.10)</td></tr>
+<tr><td><b>Gamma</b></td><td>Change in <b>delta</b> because of change in stock price</td><td>Hamesha positive (long); short gamma = danger</td></tr>
+<tr><td><b>Vega</b></td><td>Change in option price because of change in <b>IV (implied volatility)</b></td><td>IV high → premium fat (zyada)</td></tr>
+<tr><td><b>Rho</b></td><td>Change in option price because of change in <b>risk-free interest rate</b></td><td>India ke short-dated options ke liye minor</td></tr>
+</table>
+
+<h3>5.1 Delta — Detail</h3>
+<ul>
+  <li><b>Definition:</b> ₹1 stock price move → option price kitna badlega. (Sensitivity to change in stock price.)</li>
+  <li><b>ATM delta always = 0.5.</b> DAB ₹450 pe → 450 put ka delta ≈ 0.5.</li>
+  <li>DAB ₹1 gira → put ka price 50 paise badhega (put buyer fayda market girne pe → <b>put delta negative</b>, opposite direction).</li>
+  <li><b>Call delta positive</b> (market upar → call price upar), <b>Put delta negative</b>.</li>
+  <li>ITM delta 0.8–0.9 (stock ₹1 move → option ₹0.80–0.90), OTM delta 0.1–0.3 (₹20 door OTM barely moves, ~10 paise).</li>
+  <li><b>Delta ≈ probability of expiring ITM</b> (teacher ne short note kiya, detail nahi).</li>
+  <li>ITM 470 put ke paas ₹20 intrinsic hi hai; DAB ₹1 girne pe intrinsic ₹21 → option ≈ ₹1 move hota hai.</li>
+</ul>
+
+<div class="calc">
+<b>ATM 450 Put (delta −0.5):</b> DAB ₹4 gira → put ₹2 mehengi. DAB ₹4 badha → put ₹2 sasti.<br>
+<b>OTM 430 Put (delta ~0.1–0.2):</b> DAB gira → sirf 5–10 paise move.
+</div>
+
+<div class="note"><b>Seller ka Delta:</b> Hemant ki sab strategies mein delta <b>positive</b> hota hai. Wo put sell karta hai → put ka delta negative tha, wo usse bech deta hai → uske liye delta positive (market upar → fayda).</div>
+
+<h3>5.2 Theta — Detail</h3>
+<ul>
+  <li><b>Definition:</b> Change in option price because one day passed (baaki sab constant). "Time value of money" = isi ka naam.</li>
+  <li>Ek din beetne ka koi option price girta hi girta hai (agar sab constant rahe).</li>
+  <li>Example numbers: ATM theta 0.30, ITM 0.10, OTM 0.10.</li>
+</ul>
+<div class="calc">
+ATM ₹5 ka option → agla din <b>₹4.70</b> (theta 0.30 gone)<br>
+OTM ₹2 ka option → agla din <b>₹1.90</b><br>
+ITM ₹20 ka option → agla din <b>₹19.90</b>
+</div>
+<div class="rule"><b>Theta negative for buyers, positive for sellers.</b> Buyer pays theta, seller collects. "That's why sellers usually always make money."</div>
+
+<h3>5.3 Gamma — Detail</h3>
+<ul>
+  <li><b>Definition:</b> Change in delta because of change in stock price. (Delta change hone se option price kitna badla.)</li>
+  <li>Market jis direction mein jaati hai, usi direction mein delta accumulate hota jaata hai (relative terms mein).</li>
+  <li><b>Put gamma positive:</b> DAB 450 put delta −0.5; DAB girne par contract ITM ho jata hai → delta −0.9 (magnitude badha). Same direction move.</li>
+  <li><b>Call gamma positive:</b> 450 call delta 0.5; DAB ₹10 badha → call ITM → delta 0.76+ (badha).</li>
+  <li><b>Gamma both positive (long).</b> Buy option = long gamma. Sell option = short gamma.</li>
+</ul>
+
+<h4>Gamma Blast / Short Gamma (Teacher ka straight talk)</h4>
+<div class="rule"><b>"Gamma Blast ek faltu concept hai — waste of time. Pankaj Sahu type scams mein ye words use hote hain."</b> Jo hota hai wo "delta blast" hai: short-gamma wale (jo call+put dono bech dete hain, delta ≈ 0) pe market kisi bhi direction mein move kare, delta ek taraf pile-up ho jata hai aur unke bade loss hote hain. Yeh market ka normal gamma behavior hai, koi magic nahi.</div>
+
+<h3>5.4 Vega &amp; Rho — Short</h3>
+<ul>
+  <li><b>Vega:</b> IV/volatility change se option price badalna. Volatility badhe → sab premium badhenge (insurance analogy: gusse wala aadmi zyada premium).</li>
+  <li><b>Rho:</b> Interest rate change (e.g. RBI rate badhaya) → option price pe minor positive impact. India mein short-dated options ke liye negligible. (US mein long-dated LEAPS/swaps exist karte hain.)</li>
+</ul>
+
+<!-- ==================== 6. IV & VIX ==================== -->
+<h2 id="iv" class="section-break">6. Implied Volatility &amp; India VIX</h2>
+
+<h3>6.1 India VIX</h3>
+<ul>
+  <li>India VIX = volatility/fear index. Number jitna <b>zyada</b>, utni zyada volatility/fear; jitna <b>kam</b>, utni stability.</li>
+  <li>VIX calculate hota hai — kai companies ke <b>ATM call+put premiums</b> mein jump se, weighted average + complex calculations (reverse Black-Scholes).</li>
+</ul>
+
+<h3>6.2 BIG Misconception (Important!)</h3>
+<table>
+<tr><th>Statement</th><th>Asli Sach</th></tr>
+<tr><td>"Options price increases <b>because</b> VIX increased"</td><td><b>GALAT</b> (but books/NISM exam mein isse true mark karo!)</td></tr>
+<tr><td>"VIX increases <b>because</b> option prices increased"</td><td><b>SAHI</b></td></tr>
+</table>
+<div class="win"><b>Logic:</b> VIX ko kisne badhaya? Option premium pe pehle change aata hai — news/Trump-type events se logon mein fear badhta hai → traders premium badha dete hain (demand-supply) → phir VIX calculate hoke upar jaata hai. <b>Pehle premium, phir VIX.</b> 99% books galat likhti hain. Exam mein jo standard statement hai wahi mark karna.</div>
+
+<h3>6.3 Black-Scholes Model (Knowledge only)</h3>
+<div class="calc">
+C = S·N(d₁) − K·e^(−rt)·N(d₂)<br>
+Where: C = call price, S = stock price, N = normal distribution area, K = strike, r = risk-free rate, t = time to expiry, d₁/d₂ = complex log terms (ln(S/K) + ...), σ (sigma) = volatility.
+</div>
+<ul>
+  <li>Teacher ne IIT Delhi Financial Mathematics course mein ye derivation ki thi (10 pages!). <b>Deep mein jaana zaroori nahi.</b></li>
+  <li><b>IV kaise nikalte hain:</b> Market call price de deta hai → baaki sab values (time, S, K, r) known hain → software mein reverse-Black-Scholes karke <b>sigma (IV)</b> nikalte hain. Har liquid stock ke liye, weighted average → India VIX.</li>
+  <li>"Stock market itna complex math use karta hai — retail ko lagta hai paisa asaan hai. <b>Asaan nahi hai.</b>"</li>
+</ul>
+
+<div class="note"><b>Teacher ka fair price:</b> "Main jo price use karta hoon = (Bid + Ask)/2. Jo market kehti hai, sahi kehti hai. Uske according strategy likhta hoon."</div>
+
+<h3>6.4 IV Rank, IV Percentile (IVP)</h3>
+<table>
+<tr><th>Metric</th><th>Matlab</th><th>Use</th></tr>
+<tr><td><b>IV Percentile (IVP)</b></td><td>IV in terms of percentile (0–100%) compared to recent range</td><td>Only current expiry ke liye reliable; next month ke liye nahi. Teacher use nahi karta.</td></tr>
+<tr><td><b>IV Rank</b></td><td>Today's IV vs its own past-year high-low range</td><td>High rank → good to sell.</td></tr>
+<tr><td><b>IV Change</b></td><td>Aaj kitna IV badha/gira</td><td>Screener mein sabse zyada IV change wale stock dekho.</td></tr>
+</table>
+
+<div class="win"><b>Seller Rule:</b> "<b>Sell when IV is high, buy when IV is low.</b>" Agar aaj VIX 10–20% upar hai → put sell karna accha (2–4 din mein 10–30% profit possible). Jo stock aaj sabse zyada gira hai / jiski IV sabse zyada badhi hai → uski put becho. <i>Sirf great-of-great companies (DAB, HUL, Reliance, HDFC Bank, top IT) mein.</i></div>
+
+<div class="note"><b>Screener:</b> Sensibull → Analyze → Find Great Trade → ATM IV sort karo. Lekin IV badhi hui stocks aksar aaj girne wale hi hote hain (top movers) — <b>unme kaam mat karo</b>. Sirf apni quality-list ke stocks.</div>
+
+<!-- ==================== 7. OPTION CHAIN ==================== -->
+<h2 id="optionchain" class="section-break">7. Option Chain — OI, LTP, Greeks, Volume</h2>
+
+<p><b>Definition:</b> Option chain contains information on <b>all options</b> for a particular underlying (stock/futures/commodities/index). Tabular/consolidated format mein sab strikes ki details.</p>
+
+<h3>7.1 Elements of Option Chain</h3>
+<table>
+<tr><th>Field</th><th>Matlab</th></tr>
+<tr><td><b>Expiry</b></td><td>Kaunsi expiry select karni hai</td></tr>
+<tr><td><b>OI</b> (Open Interest)</td><td>Total open contracts</td></tr>
+<tr><td><b>LTP</b> (Last Traded Price)</td><td>Aakhri traded price</td></tr>
+<tr><td><b>Greeks</b></td><td>Delta, theta, gamma, vega values</td></tr>
+<tr><td><b>IV</b></td><td>Implied volatility per strike</td></tr>
+<tr><td><b>Volume</b></td><td>Aaj kitne contracts trade hue</td></tr>
+<tr><td><b>Change in OI</b></td><td>OI build-up (+/−)</td></tr>
+</table>
+
+<h3>7.2 Layout Samjho</h3>
+<ul>
+  <li>Ek side <b>Put</b>, dusri side <b>Call</b>. Beech mein strike price. (Zerodha/Sensibull par alag-alag, NSE par combine.)</li>
+  <li>ATM = middle number (yellow highlighted bar).</li>
+  <li><b>ATM calculate karo futures se, stock se nahi!</b> DAB stock ₹443, June future ₹451 → isliye 450 strike ATM hai. <i>(0.5% future premium calculation mein aata hai.)</i></li>
+  <li>Puts: neeche wali (cheaper strikes) OTM, beech wali ATM, upar wali ITM. Calls: ulta.</li>
+  <li>Prices: OTM put ₹3, ATM ₹13, ITM put/ITM call <b>zyada mehenge</b> — kyun? <b>Intrinsic value extra hoti hai ITM mein.</b></li>
+</ul>
+
+<h3>7.3 Volatility Smile</h3>
+<ul>
+  <li>Option chain mein IV observe karo: <b>ATM pe IV sabse kam</b>, dono taraf (ITM &amp; OTM) badhta jaata hai → graph smile jaisa. Isi ko <b>Volatility Smile</b> kehte hain.</li>
+  <li>Example: 450/455 wali IV ~20; door ke strikes pe IV ~30.</li>
+</ul>
+
+<div class="note"><b>Delta in chain:</b> Put ka delta negative sign ke saath dikhta hai. ATM put delta ~0.5 (negative). Seller ko automatically positive delta milta hai.</div>
+
+<!-- ==================== 8. OI, MAX PAIN, PCR ==================== -->
+<h2 id="oi" class="section-break">8. Open Interest (OI), Max Pain, PCR</h2>
+
+<h3>8.1 Open Interest (OI)</h3>
+<ul>
+  <li><b>OI = kitne open contracts exist karte hain.</b> Contracts create (buyer+seller dono) aur delete hote rehte hain → OI total open count.</li>
+  <li><b>Who creates contracts?</b> Buyer aur seller dono simultaneously. (Buyer nahi → seller kise bechega.)</li>
+  <li>Rain/₹5-₹10 bet example (lottery-like contract system): 2 contracts created = OI 2, +10 = OI 12, etc.</li>
+  <li>Bohot zyada OI → market manipulation risk → SEBI/exchange regulations.</li>
+  <li><b>OI reading (DAB):</b> 430 pe bada put OI → rich players ne 430 put sell ki hai = "market 430 ke neeche nahi jaayegi; agar 430 aayi toh peti bhar ke stock kharid lenge." 500 pe bada call OI → "DAB 500 se upar nahi jaayega; sellers delivery dene ready hain."</li>
+  <li><b>Change in OI:</b> Build-up (nayi positions ban rahi hain) vs Unwind (purane players position kaat rahe hain).</li>
+</ul>
+
+<h4>Volume vs OI (Biscuit shop example)</h4>
+<div class="calc">
+Mere paas 10 Parle-G biscuits hain.<br>
+Aankhein: 10 biscuit beche → 10 bheje → 10 wapas aaye → phir beche...<br>
+Volume = 30+ (kitni baar trade hua)<br>
+OI = 10 (kitne unique open contracts hain)<br>
+<i>"Ek hi contract se 1000 crore ki volume kar sakta hoon — OI wahi rahega."</i>
+</div>
+
+<h3>8.2 Max Pain</h3>
+<ul>
+  <li><b>Max Pain strike</b> = jis strike pe <b>Call + Put combined OI</b> sabse zyada hota hai.</li>
+  <li>Concept: market aksar expiry ke paas usi level pe close hota hai jahan most options expire worthless (sellers win).</li>
+  <li>Use: "jis strike pe combined premium/OI sabse zyada hai, market usko nahi todega." 99% chance market us range mein close hogi.</li>
+  <li><b>Teacher ka view:</b> "Logically/factually correct hai, par main personally use nahi karta — mere ko isme itna alpha nahi dikhta. Main bahut normal tarike se kaam karta hoon."</li>
+</ul>
+
+<h3>8.3 Put-Call Ratio (PCR)</h3>
+<div class="calc">
+PCR = (Total Put OI) ÷ (Total Call OI)<br>
+PCR &gt; 1 → market <b>bullish</b> (zyada put sellers = market girne nahi denge)<br>
+PCR &lt; 1 → market <b>bearish</b> (zyada call sellers = market badhne nahi denge)
+</div>
+<ul>
+  <li>Q: "Zyada put seller = market neeche giregi?" <b>FALSE.</b> Put seller market ko flat/upar chahata hai. Call seller flat/neeche chahata hai.</li>
+  <li>Put seller 2 lakh, call seller 500 → PCR 4 → market down nahi jaayegi. Ulti condition → market upar nahi jaayegi.</li>
+  <li>Ye "big players ka game" hai — woh crores se trade karte hain, unki info/alpha pe bharosa karte hain. (Yahan 99% crowd rule ulta hai kyunki ye sellers hain, powerful players hain.)</li>
+</ul>
+
+<div class="rule"><b>Caution:</b> "These are crowd behavior signals, not certainty. Use them with price action. Don't worship the option chain — <b>read it but don't worship it.</b>"</div>
+
+<!-- ==================== 9. MARGIN ==================== -->
+<h2 id="margin" class="section-break">9. Margin for Option Sellers</h2>
+
+<ul>
+  <li><b>Buyer:</b> Full cash premium pay (margin pe option buy nahi kar sakte). ₹10,000 ka option → ₹10,000 dena hoga.</li>
+  <li><b>Seller:</b> Premium nahi deta — <b>margin (SPAN + Exposure)</b> girvi rakhta hai, phir aaram se option bechta hai.</li>
+  <li>Volatility badhe → margin requirement exchange apne aap badha deti hai (intraday bhi badal sakta hai).</li>
+  <li><b>Spread reduces margin:</b> Put sell + neeche wali put buy → margin reduce (aage strategies mein detail).</li>
+  <li>Margin ke types (SPAN, Exposure, Delivery margin) — teacher: "Main nahi jaanta, jaanna nahi chahta. Merko sirf combined margin 1.32 crore blocked hai — wahi matter karta hai. <b>Margin margin hai — paisa girvi rakho, baat khatam.</b>"</li>
+</ul>
+
+<div class="win"><b>Reality Check:</b> "Selling earns a small steady premium against a large posted margin. <b>Risk management (not premium size) is what keeps you in the game.</b>" Long-run mein paisa wahin banega jo risk manage karega.</div>
+
+<!-- ==================== 10. Q&A ==================== -->
+<h2 id="qa" class="section-break">10. Q&amp;A Highlights (Live Doubts)</h2>
+
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td>Option price dekhte waqt stock ya future price? (Vandita)</td><td><b>Future price</b> — usi expiry ke future ke basis pe saare option prices calculate hote hain. DAB stock ₹443, future ₹451 → ATM 450. Stock aur future saath-saath upar-neeche hote hain (~0.5% gap).</td></tr>
+<tr><td>Volume vs Open Interest difference? (Muni Rao)</td><td>Volume = aaj kitne contracts trade hue (repeat). OI = unique open contracts. Biscuit example: 30 volume, 10 OI.</td></tr>
+<tr><td>OI se swing trading mein entry late kar sakte hain? (Nishagar)</td><td>Teacher aise use nahi karta, backtest nahi kiya. "Aap try karo, main is direction mein nahi sochta."</td></tr>
+<tr><td>Swing ke liye stock selection kaise? (Shivani)</td><td>Great companies ki list denge; usme bhi criteria (envelope, etc.). Index pe bhi apply kar sakte ho. Monthly index expiry pe kaam karta hoon; weekly nahi.</td></tr>
+<tr><td>Strike price support/resistance/envelope ke basis pe? (Kuldeep)</td><td>Strategy day (kal) mein exactly bataunga.</td></tr>
+<tr><td>ITM/ATM/OTM option chain mein define nahi hota?</td><td>Haan, khud manual calculate karna hota hai (stock/future vs strike). 10-10 ke multiples hone ki wajah se round-off.</td></tr>
+<tr><td>OTM kaise ITM banta hai? (MMA 25)</td><td>Stock girne se put apne aap OTM→ITM ho jaati hai. Stock ₹450 → 430 put OTM; stock ₹400 → 430 put ITM (₹30 intrinsic). "Humme isse farak nahi padta."</td></tr>
+<tr><td>IV high/low kisse compare karein? (Usman)</td><td>Past/historical se compare karte hain. Aaj IV 10–20% zyada ho → put/call sell. Chart India/stock-wise IV chart dekho.</td></tr>
+<tr><td>Stop loss use karte ho? (Shivani)</td><td>"<b>Meri dictionary mein stop loss hai hi nahi.</b> Risk kaise manage karta hoon, wo aage sikhaunga."</td></tr>
+</table>
+
+<div class="note"><b>Course notes:</b> Next class cover hoga — Defined vs Undefined Risk, Vertical Spreads, Neutral Strategies, Wheel Formula, Covered Calls, Risk Management, Taxes, Monthly Routine. <i>(Teacher mostly covered call sikhaenge.)</i> Student ne gap/break ki request ki — teacher team se discuss karke sessions adjust karne ko ready.</div>
+
+<!-- ==================== 11. REVISION ==================== -->
+<h2 id="revision" class="section-break">11. Quick Revision &amp; Formulas</h2>
+
+<h3>All Formulas</h3>
+<div class="calc">
+Put IV  = max(Strike − Current, 0)<br>
+Call IV = max(Current − Strike, 0)<br>
+Option Price = Intrinsic Value + Time Value<br>
+Break-even Long Call = Strike + Premium<br>
+ATM Delta ≈ 0.5 (put negative), ITM ≈ 0.8–0.9, OTM ≈ 0.1–0.3<br>
+Theta: ATM &gt; ITM ≈ OTM (all decay with time → 0 at expiry)<br>
+PCR = Put OI ÷ Call OI (&gt;1 bullish, &lt;1 bearish)<br>
+Max Pain = strike with highest Call+Put combined OI<br>
+Premium = (Bid + Ask) / 2  (teacher's fair price)
+</div>
+
+<h3>Ek-Line Definitions</h3>
+<table>
+<tr><th>Term</th><th>Definition</th></tr>
+<tr><td>ITM</td><td>Option with positive intrinsic value (already "in the money")</td></tr>
+<tr><td>ATM</td><td>Strike = current (future) price</td></tr>
+<tr><td>OTM</td><td>No intrinsic value, only time value</td></tr>
+<tr><td>Intrinsic Value</td><td>Locked-in profit (strike vs spot gap)</td></tr>
+<tr><td>Time Value</td><td>Hope/premium jo expiry ke saath ghat-ta hai (theta eats it)</td></tr>
+<tr><td>Delta</td><td>₹1 stock move → option move</td></tr>
+<tr><td>Theta</td><td>1 day pass → option price change (time value)</td></tr>
+<tr><td>Gamma</td><td>Delta ka change (stock move se)</td></tr>
+<tr><td>Vega</td><td>IV change → option price change</td></tr>
+<tr><td>Rho</td><td>Interest rate change → option price change</td></tr>
+<tr><td>India VIX</td><td>Fear/volatility index (option premiums se derived)</td></tr>
+<tr><td>OI</td><td>Total open contracts</td></tr>
+<tr><td>Volume</td><td>Total contracts traded today</td></tr>
+<tr><td>Max Pain</td><td>Strike with max combined OI (expiry magnet)</td></tr>
+<tr><td>PCR</td><td>Put OI ÷ Call OI (bullish/bearish signal)</td></tr>
+</table>
+
+<h3>10-Second Recap</h3>
+<div class="win">Options price = IV + TV. Put IV = max(Strike−Spot,0), Call IV = max(Spot−Strike,0). Moneyness: strike upar/neeche/equal. ATM ka theta &amp; delta-max (0.5). Greeks: Delta (stock), Theta (time), Gamma (delta change), Vega (IV), Rho (interest). VIX = fear index — premium pehle badhta hai, phir VIX. Option chain = sab strikes ki table (OI, LTP, Greeks, IV). OI batata hai bade players kahin kahin "bood" baithe hain → market un levels ko nahi todta. Sell jab IV high ho, buy jab IV low.</div>
+
+<!-- ==================== 12. RULES ==================== -->
+<h2 id="rules" class="section-break">12. Golden Rules / Take-aways</h2>
+
+<ol>
+  <li><b>Hamesha liquid contracts mein kaam karo.</b> ITM contracts usually illiquid — unse door.</li>
+  <li><b>Option seller = waiting ke paise.</b> Theta din-raat seller ki jeb mein paisa daalta hai.</li>
+  <li><b>Short put = large par limited risk; short call = unlimited risk.</b> Kabhi naked call mat becho without plan.</li>
+  <li><b>99% retailers option buyers hain (hero-zero) — isliye 99% lose karte hain.</b></li>
+  <li><b>Sell when IV is high, buy when IV is low.</b> VIX 10–20% upar → put sell ka mauka.</li>
+  <li>Sirf <b>great-of-great companies</b> (DAB, HUL, Reliance, HDFC Bank, top IT) mein put selling.</li>
+  <li><b>Premiums pehle badalte hain, phir VIX.</b> Books galat likhti hain — exam mein standard answer dena.</li>
+  <li>Option chain ko <b>padho, pooja mat karo</b> — crowd signal hai, certainty nahi.</li>
+  <li>OI/Max Pain/PCR = probability signals, use with price action.</li>
+  <li><b>Risk management &gt; premium size.</b> "Jo risk manage karega, wahi long-run mein jeetega."</li>
+  <li><b>Stop loss teacher ki dictionary mein nahi hai</b> — risk management alag tarike se (next class: strategies, spreads, wheel, covered calls, taxes, monthly routine).</li>
+</ol>
+
+<p style="text-align:center; margin-top:30px; font-size:12px; color:#777;">
+  — End of Class 2 Notes — Compiled from transcript of "Class 2 | HFT MODULE | 30 May" (TradeWise by The Future University) —
+</p>
+
+</div>
+</body>
+</html>
