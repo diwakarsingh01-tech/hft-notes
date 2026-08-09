@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HFT Class 4 — Complete Notes + Charts | Futures & Options Advanced</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1a1a2e;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 28px;
+  }
+  h1 {
+    font-size: 24px;
+    color: #0f3460;
+    border-bottom: 3px solid #e94560;
+    padding-bottom: 8px;
+    margin: 10px 0 6px 0;
+  }
+  h2 {
+    font-size: 19px;
+    color: #0f3460;
+    border-bottom: 2px solid #0f3460;
+    padding-bottom: 5px;
+    margin: 26px 0 10px 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 15.5px;
+    color: #e94560;
+    margin: 18px 0 6px 0;
+    page-break-after: avoid;
+  }
+  h4 {
+    font-size: 13.5px;
+    color: #0f3460;
+    margin: 12px 0 4px 0;
+    page-break-after: avoid;
+  }
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0 10px 0; padding-left: 22px; }
+  li { margin: 3px 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  th, td {
+    border: 1px solid #b0b8c9;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #0f3460;
+    color: #ffffff;
+  }
+  tr:nth-child(even) { background: #f3f5f9; }
+  pre, .calc {
+    background: #f3f5f9;
+    border-left: 4px solid #0f3460;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+  }
+  .calc-red { border-left-color: #e94560; }
+  .calc-green { border-left-color: #2e8b57; }
+  .note {
+    background: #fff8e1;
+    border: 1px solid #e0c060;
+    border-left: 5px solid #f0a500;
+    padding: 8px 12px;
+    margin: 10px 0;
+    font-size: 12.5px;
+  }
+  .rule {
+    background: #fdeaea;
+    border: 1px solid #e0a0a0;
+    border-left: 5px solid #e94560;
+    padding: 8px 12px;
+    margin: 10px 0;
+  }
+  .win {
+    background: #e8f5e9;
+    border: 1px solid #a0d0a0;
+    border-left: 5px solid #2e8b57;
+    padding: 8px 12px;
+    margin: 10px 0;
+  }
+  .toc { background: #f3f5f9; border: 1px solid #b0b8c9; padding: 12px 18px; }
+  .toc a { color: #0f3460; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .section-break {
+    page-break-before: always;
+  }
+  .tag {
+    display: inline-block;
+    background: #e94560;
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .chart-card {
+    background: #fff;
+    border: 1px solid #d0d6e0;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .chart-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #0f3460;
+  }
+  @media print {
+    body { font-size: 11.5px; }
+    .page { max-width: 100%; padding: 0; }
+    h2 { page-break-before: auto; }
+    .section-break { page-break-before: always; }
+    a { color: inherit; }
+    .toc { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>📘 HFT CLASS 4 — Futures &amp; Options (Advanced): Put Selling System, Rollover, Settlement, Margin</h1>
+<p><span class="tag">CLASS 4</span><span class="tag">HFT MODULE</span><span class="tag">ADVANCED F&amp;O</span></p>
+
+<p><b>Video:</b> Class 1, Futures and Option with Hemant Jain (Advanced F&amp;O course ki pehli class)<br>
+<b>Teacher:</b> Hemant Jain — TradeWise (by The Future University)<br>
+<b>Duration:</b> 1h 19m | <b>Published:</b> 01 August 2026 | <b>Language:</b> Hindi/Hinglish<br>
+<b>Topic:</b> Big-money philosophy, put selling + rollover system, entry rules, stop-loss philosophy, profit-booking rules (fresh vs rolled), strike selection, settlement (options vs futures/MTM), margin &amp; pledging, weekly expiry, Q&amp;A</p>
+
+<div class="toc">
+<b>📑 TABLE OF CONTENTS</b>
+<ol>
+<li><a href="#philosophy">Core Philosophy — "Big money needs NO rocket science"</a></li>
+<li><a href="#core-strategy">Core Strategy — Put Selling + Rollover System</a></li>
+<li><a href="#entry">Entry Rules — Index mein kab put bechna hai</a></li>
+<li><a href="#sl">Stop-Loss Philosophy — "Main SL nahi lagata"</a></li>
+<li><a href="#booking">Profit Booking Rules (Fresh vs Rolled) ⭐</a></li>
+<li><a href="#strike">Strike Selection — ATM/ITM/OTM Balance + Value is a Range</a></li>
+<li><a href="#settlement">Settlement — Options vs Futures (Daily MTM) ⭐</a></li>
+<li><a href="#eu-american">European vs American System</a></li>
+<li><a href="#margin">Margin, Pledging &amp; Cash Collateral (50% Rule)</a></li>
+<li><a href="#rollover-charges">Rollover Charges &amp; Far-Month Futures</a></li>
+<li><a href="#weekly">Weekly Expiry — Kyun Avoid Karein</a></li>
+<li><a href="#futures-vs-puts">Futures vs Puts vs Calls (Sell-side Table + Put-Call Parity)</a></li>
+<li><a href="#qa">Q&amp;A Highlights (15+ Doubts)</a></li>
+<li><a href="#rules">Golden Rules (DOS / DON'TS)</a></li>
+<li><a href="#revision">Quick Revision (Formulas + 10-sec Recap)</a></li>
+<li><a href="#takeaways">Takeaways / Homework</a></li>
+</ol>
+</div>
+
+<div class="section-break"></div>
+
+<h2 id="philosophy">1️⃣ Core Philosophy — "Big money needs NO rocket science" [1:48–3:40]</h2>
+<div class="chart-card">
+<h3>Chart 1: Big-Money Scalping — 50-point Ladder (Sell up, Buy down)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">50</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">100</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">150</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">200</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">250</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x
+<div class="chart-card">
+<h3>Chart 2: Put Selling + Rollover Cycle (Reference Level 23,132)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<rect x="110" y="40" width="550" height="46" rx="8" fill="#0f3460"/><text x="385.0" y="60" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">1. SELL PUT</text><text x="385.0" y="77" text-anchor="middle" font-size="11" fill="#fff">Premium ~₹300 [approx] collect</text><line x1="385.0" y1="86" x2="385.0" y2="94" stroke="#999" stroke-width="2"/><rect x="110" y="100" width="550" height="46" rx="8" fill="#e94560"/><text x="385.0" y="120" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">2. Market girta hai</text><text x="385.0" y="137" text-anchor="middle" font-size="11" fill="#fff">Premium consume → loss</text><line x1="385.0" y1="146" x2="385.0" y2="154" stroke="#999" stroke-width="2"/><rect x="110" y="160" width="550" height="46" rx="8" fill="#e94560"/><text x="385.0" y="180" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">3. Month-end: BUY BACK</text><text x="385.0" y="197" text-anchor="middle" font-size="11" fill="#fff">₹100 loss book [approx]</text><line x1="385.0" y1="206" x2="385.0" y2="214" stroke="#999" stroke-width="2"/><rect x="110" y="220" width="550" height="46" rx="8" fill="#2e8b57"/><text x="385.0" y="240" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">4. SAME strike NEXT month</text><text x="385.0" y="257" text-anchor="middle" font-size="11" fill="#fff">Intrinsic recover + nayi time value</text><line x1="385.0" y1="266" x2="385.0" y2="274" stroke="#999" stroke-width="2"/><rect x="110" y="280" width="550" height="46" rx="8" fill="#2e8b57"/><text x="385.0" y="300" text-anchor="middle" font-size="14" fill="#fff" font-weight="bold">5. Reference level upar → PROFIT</text><text x="385.0" y="317" text-anchor="middle" font-size="11" fill="#fff">Saara loss + extra</text><text x="385.0" y="344" text-anchor="middle" font-size="12" fill="#0f3460" font-weight="bold">↺ Har month repeat — reference level (23,132) upar → shaandaar profit</text>
+</svg>
+<p class="chart-note">Rollover = month-end purani put buy back (loss book) + next month SAME strike sell. 90%+ cases mein next premium loss se zyada. Nifty halka sa bhi upar → saara loss recover + profit. Teacher: 'Nifty mein next-level safety hai.'</p>
+</div>
+="62" y="24.0" text-anchor="end" font-size="11" fill="#555">300</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1
+<div class="chart-card">
+<h3>Chart 5: Value vs Momentum Trading</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="276.0" x2="700" y2="276.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="280.0" text-anchor="end" font-size="11" fill="#555">2</text><line x1="70" y1="212.0" x2="700" y2="212.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="216.0" text-anchor="end" font-size="11" fill="#555">4</text><line x1="70" y1="148.0" x2="700" y2="148.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="152.0" text-anchor="end" font-size="11" fill="#555">6</text><line x1="70" y1="84.0" x2="700" y2="84.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="88.0" text-anchor="end" font-size="11" fill="#555">8</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">10</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">5</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">10</text><polyline points="133.0,276.0 259.0,260.0 385.0,244.0 511.0,180.0 637.0,84.0" fill="none" stroke="#2e8b57" stroke-width="3"/><text x="385.0" y="236.0" text-anchor="middle" font-size="12" fill="#2e8b57">VALUE: neeche buy, upar exit</text><polyline points="133.0,84.0 259.0,116.0 385.0,68.0 511.0,100.0 637.0,52.0" fill="none" stroke="#e94560" stroke-width="3"/><text x="385.0" y="60.0" text-anchor="middle" font-size="12" fill="#e94560">MOMENTUM: trend follow + SL</text>
+</svg>
+<p class="chart-note">Value: stock neeche → value hai; upar gaya → value khatam = trade khatam. SL NAHI lagana (bottom par). Momentum: bhaag raha hai → buy; SL SABSE ZAROORI. ATH buy + no SL = wipe out (3-4 saal market life); bottom buy + SL = sabse badi bewakoofi.</p>
+</div>
+"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">50</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">75</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">100</text><polyline points="70.0,180.0 133.0,153.3 196.0,169.3 259.0,137.3 322.0,153.3 385.0,116.0 448.0,137.3 511.0,100.0 574.0,121.3 637.0,84.0 700.0,100.0" fill="none" stroke="#0f3460" stroke-width="2.5"/><line x1="125.0" y1="153.33333333333334" x2="141.0" y2="153.33333333333334" stroke="#e94560" stroke-width="4"/><line x1="251.0" y1="137.33333333333331" x2="267.0" y2="137.33333333333331" stroke="#e94560" stroke-width="4"/><line x1="377.0
+<div class="chart-card">
+<h3>Chart 3: Fresh Put — 3-Tier Exit Ladder (DK % rules)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anc
+<div class="chart-card">
+<h3>Chart 9: Strike Balance — 2 ATM + 1 ITM + 1 OTM (₹25L)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="273.3" x2="700" y2="273.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="277.3" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="206.7" x2="700" y2="206.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="210.7" text-anchor="end" font-size="11" fill="#555">1</text><line x1="70" y1="140.0" x2="700" y2="140.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="144.0" text-anchor="end" font-size="11" fill="#555">2</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">2</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">1</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">2</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">3</text><rect x="105.4" y="73.3" width="86.6" height="266.7" fill="#0f3460" rx="4"/><text x="148.8" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">2</text><text x="148.8" y="374.0" text-anchor="middle" font-size="11" fill="#555">ATM</text><rect x="262.9" y="73.3" width="86.6" height="266.7" fill="#0f3460" rx="4"/><text x="306.2" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">2</text><text x="306.2" y="374.0" text-anchor="middle" font-size="11" fill="#555">ATM</text><rect x="420.4" y="206.7" width="86.6" height="133.3" fill="#e94560" rx="4"/><text x="463.8" y="198.7" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">1</text><text x="463.8" y="374.0" text-anchor="middle" font-size="11" fill="#555">ITM</text><rect x="577.9" y="206.7" width="86.6" height="133.3" fill="#2e8b57" rx="4"/><text x="621.2" y="198.7" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">1</text><text x="621.2" y="374.0" text-anchor="middle" font-size="11" fill="#555">OTM</text>
+</svg>
+<p class="chart-note">Balance bahut zaroori: ATM/ITM premium wali (bada paisa), OTM 'muh meetha' wali (market thoda upar → turant profit). Naya trader OTM ke kam premium se ATM/ITM ki taraf khinchta hai — phir loss par 'kash OTM becha hota'. Teacher khud 10-10% door ki OTM puts bechta hai.</p>
+</div>
+hor="end" font-size="11" fill="#555">0</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">17</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">33</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">50</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">67</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">83</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">100</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">1</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555"
+<div class="chart-card">
+<h3>Chart 7: Settlement — Options (expiry) vs Futures (daily MTM)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">-20000</text><line x1="70" y1="260.0" x2="700" y2="260.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="264.0" text-anchor="end" font-size="11" fill="#555">-10000</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="100.0" x2="700" y2="100.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="104.0" text-anchor="end" font-size="11" fill="#555">10000</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">20000</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#333" stroke-width="1.5"/><text x="62" y="176.0" 
+<div class="chart-card">
+<h3>Chart 10: Rollover Charges (~₹3,000 per cycle)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="326.7" x2="700" y2="326.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="330.7" text-anchor="end" font-size="11" fill="#555">50</text><line x1="70" y1="313.3" x2="700" y2="313.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="317.3" text-anchor="end" font-size="11" fill="#555">100</text><line x1="70" y1="300.0" x2="700" y2="300.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="304.0" text-anchor="end" font-size="11" fill="#555">150</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">200</text><line x1="70" y1="273.3" x2="700" y2="273.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="277.3" text-anchor="end" font-size="11" fill="#555">250</text><line x1="70" y1="260.0" x2="700" y2="260.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="264.0" text-anchor="end" font-size="11" fill="#555">300</text><line x1="70" y1="246.7" x2="700" y2="246.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="250.7" text-anchor="end" font-size="11" fill="#555">350</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">400</text><line x1="70" y1="220.0" x2="700" y2="220.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="224.0" text-anchor="end" font-size="11" fill="#555">450</text><line x1="70" y1="206.7" x2="700" y2="206.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="210.7" text-anchor="end" font-size="11" fill="#555">500</text><line x1="70" y1="193.3" x2="700" y2="193.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="197.3" text-anchor="end" font-size="11" fill="#555">550</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">600</text><line x1="70" y1="166.7" x2="700" y2="166.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="170.7" text-anchor="end" font-size="11" fill="#555">650</text><line x1="70" y1="153.3" x2="700" y2="153.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="157.3" text-anchor="end" font-size="11" fill="#555">700</text><line x1="70" y1="140.0" x2="700" y2="140.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="144.0" text-anchor="end" font-size="11" fill="#555">750</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">800</text><line x1="70" y1="113.3" x2="700" y2="113.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="117.3" text-anchor="end" font-size="11" fill="#555">850</text><line x1="70" y1="100.0" x2="700" y2="100.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="104.0" text-anchor="end" font-size="11" fill="#555">900</text><line x1="70" y1="86.7" x2="700" y2="86.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="90.7" text-anchor="end" font-size="11" fill="#555">950</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">1000</text><line x1="70" y1="60.0" x2="700" y2="60.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="64.0" text-anchor="end" font-size="11" fill="#555">1050</text><line x1="70" y1="46.7" x2="700" y2="46.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="50.7" text-anchor="end" font-size="11" fill="#555">1100</text><line x1="70" y1="33.3" x2="700" y2="33.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="37.3" text-anchor="end" font-size="11" fill="#555">1150</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">1200</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="175.0" y1="20" x2="175.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="175.0" y="356" text-anchor="middle" font-size="11" fill="#555">1</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">2</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">3</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555">4</text><line x1="595.0" y1="20" x2="595.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="595.0" y="356" text-anchor="middle" font-size="11" fill="#555">5</text><rect x="93.6" y="73.3" width="57.8" height="266.7" fill="#e94560" rx="4"/><text x="122.5" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹1,000</text><text x="122.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">STT</text><rect x="198.6" y="233.3" width="57.8" height="106.7" fill="#f0a500" rx="4"/><text x="227.5" y="225.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹400</text><text x="227.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">SEBI tax</text><rect x="303.6" y="180.0" width="57.8" height="160.0" fill="#0f3460" rx="4"/><text x="332.5" y="172.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹600</text><text x="332.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Brokerage</text><rect x="408.6" y="233.3" width="57.8" height="106.7" fill="#2e8b57" rx="4"/><text x="437.5" y="225.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹400</text><text x="437.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">GST</text><rect x="513.6" y="260.0" width="57.8" height="80.0" fill="#888" rx="4"/><text x="542.5" y="252.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹300</text><text x="542.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">PTT</text><rect x="618.6" y="260.0" width="57.8" height="80.0" fill="#888" rx="4"/><text x="647.5" y="252.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹300</text><text x="647.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Cess</text>
+</svg>
+<p class="chart-note">Future buy + sell karne par bahut saare charges — poora rollover cycle ~₹3,000 costly [approx]. Solution: immediate month ki jagah DOOR se door ka liquid future lo (e.g. August chhod September) → baar-baar trade nahi → charges kam.</p>
+</div>
+text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">50</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">75</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">100</text><polyline points="70.0,260.0 637.0,260.0 668.5,220.0 700.0,196.0" fill="none" stroke="#2e8b57" stroke-width="3"/><polyline points="70.0,260.0 133.0,276.0 196.0,252.0 259.0,284.0 322.0,260.0 385.0,244.0 448.0,268.0 511.0,236.0 574.0,252.0 637.0,212.0 700.0,196.0" fill="none" stroke="#e94560" stroke-width="2.5"/><rect x="90" y="8" width="14" height="14" fill="#2e8b57"/><text x="110" y="19" font-size="12" fill="#2e8b57">OPTIONS — expiry tak unrealized (sirf margin badhta hai)</text><rect x="400" y="8" width="14" height="14" fill="#e94560"/><text x="420"
+<div class="chart-card">
+<h3>Chart 8: Margin Components — 50% Cash Rule</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="286.7" x2="700" y2="286.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="290.7" text-anchor="end" font-size="11" fill="#555">10</text><line x1="70" y1="233.3" x2="700" y2="233.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="237.3" text-anchor="end" font-size="11" fill="#555">20</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">30</text><line x1="70" y1="126.7" x2="700" y2="126.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="130.7" text-anchor="end" font-size="11" fill="#555">40</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">50</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">60</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">1</text><rect x="182.5" y="73.3" width="90.0" height="266.7" fill="#2e8b57" rx="4"/><text x="227.5" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">50</text><text x="227.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Cash/Cash component
+(liquid, liquid beech, debt funds)</text><rect x="497.5" y="73.3" width="90.0" height="266.7" fill="#0f3460" rx="4"/><text x="542.5" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">50</text><text x="542.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Equity collateral
+(shares, MF, ETFs)</text><text x="385.0" y="34" text-anchor="middle" font-size="12" fill="#333">₹25L → max 4 positions → margin call kabhi nahi</text>
+</svg>
+<p class="chart-note">Exchange rule: min 50% cash/cash component HAR margin-wali cheez mein (future buy, call sell, kuch bhi) — 'Maximum 50, minimum 50'. Baaki 50% equity collateral se. Option BUYING = pura cash. ₹25L → 4 positions (5-6-7L margin) → margin call kabhi nahi.</p>
+</div>
+ y="19" font-size="12" fill="#e94560">FUTURES — daily MTM (cash cut/add)</text><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Time (trading days) → expiry</text>
+</svg>
+<p class="chart-note">Options: ₹1 lakh paper loss → sirf margin requirement badhti hai, account se nahi kata. Futures: har din loss/profit cash component se cut/add (MTM). Cash negative → 18-20% annual interest + brokerage double. 'Cash kabhi negative na jaye.'</p>
+</div>
+>2</text><rect x="130.0" y="244.0" width="90.0" height="96.0" fill="#2e8b57" rx="4"/><text x="175.0" y="236.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">30</text><text x="175.0" y="374.0" text-anchor="middle" font-size="11" fill="#555">1 din → 30% DK</text><rect x="340.0" y="180.0" width="90.0" height="160.0" fill="#f0a500" rx="4"/><text x="385.0" y="172.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">50</text><text x="385.0" y="374.0" text-anchor="middle" font-size="11" fill="#555">15 din → 50% DK</text><rect x="550.0" y="84.0" width="90.0" height="256.0" fill="#e94560" rx="4"/><text x="595.0" y="76.0" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">80</text><text x="595.0" y="374.0" text-anchor="middle" font-size="11" fill="#555">Anytime → 70-80% DK</text><text x="385.0" y="34" text-anchor="middle" font-size="12" fill="#333">Seller ke liye DK% = Profit%</text>
+</svg>
+<p class="chart-note">F (fresh put): 1 din mein 30% decay → turant exit. Nahi → 15 din 50% wait. Nahi → 70-80% tak wait (minimum). DK% = seller ka profit%. Example: ₹100 sell → ₹70 buy back = 30% profit × 65 lot = ₹1,950/lot.</p>
+</div>
+<div class="chart-card">
+<h3>Chart 4: Rolled Put — Base Strike Recovery</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">23500</text><line x1="70" y1="317.1" x2="700" y2="317.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="321.1" text-anchor="end" font-size="11" fill="#555">23550</text><line x1="70" y1="294.3" x2="700" y2="294.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="298.3" text-anchor="end" font-size="11" fill="#555">23600</text><line x1="70" y1="271.4" x2="700" y2="271.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="275.4" text-anchor="end" font-size="11" fill="#555">23650</text><line x1="70" y1="248.6" x2="700" y2="248.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="252.6" text-anchor="end" font-size="11" fill="#555">23700</text><line x1="70" y1="225.7" x2="700" y2="225.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="229.7" text-anchor="end" font-size="11" fill="#555">23750</text><line x1="70" y1="202.9" x2="700" y2="202.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="206.9" text-anchor="end" font-size="11" fill="#555">23800</text><line x1="70" y1="180.0" x2="700" y2="180.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="184.0" text-anchor="end" font-size="11" fill="#555">23850</text><line x1="70" y1="157.1" x2="700" y2="157.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="161.1" text-anchor="end" font-size="11" fill="#555">23900</text><line x1="70" y1="134.3" x2="700" y2="134.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="138.3" text-anchor="end" font-size="11" fill="#555">23950</text><line x1="70" y1="111.4" x2="700" y2="111.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="115.4" text-anchor="end" font-size="11" fill="#555">24000</text><line x1="70" y1="88.6" x2="700" y2="88.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="92.6" text-anchor="end" font-size="11" fill="#555">24050</text><line x1="70" y1="65.7" x2="700" y2="65.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="69.7" text-anchor="end" font-size="11" fill="#555">24100</text><line x1="70" y1="42.9" x2="700" y2="42.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="46.9" text-anchor="end" font-size="11" fill="#555">24150</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">24200</text><line x1="70" y1="11082.9" x2="700" y2="11082.9" stroke="#333" stroke-width="1.5"/><text x="62" y="11078.9" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">50</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">75</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">100</text><polyline points="70.0,111.4 164.5,180.0 259.0,248.6 353.5,202.9 448.0,157.1 542.5,88.6 637.0,42.9 700.0,20.0" fill="none" stroke="#0f3460" stroke-width="2.5"/><line x1="70.0" y1="111.42857142857142" x2="700.0" y2="111.42857142857142" stroke="#e94560" stroke-width="2.5" stroke-dasharray="6,4"/><text x="694.0" y="105.42857142857142" text-anchor="end" font-size="12" fill="#e94560">BASE STRIKE 24,000</text><circle cx="259.0" cy="202.85714285714283" r="5" fill="#f0a500"/><circle cx="353.5" cy="157.14285714285714" r="5" fill="#f0a500"/><circle cx="448.0" cy="88.57142857142857" r="5" fill="#f0a500"/><circle cx="542.5" cy="42.857142857142854" r="5" fill="#f0a500"/><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Time (months) — same strike rollover jab tak base se upar na jaye</text><rect x="90" y="8" width="14" height="14" fill="#e94560"/><text x="110" y="19" font-size="12" fill="#e94560">Base
+<div class="chart-card">
+<h3>Chart 6: 10% Stock Fall — Future vs Put Sell (Loss Comparison)</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="317.8" x2="700" y2="317.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="321.8" text-anchor="end" font-size="11" fill="#555">5000</text><line x1="70" y1="295.6" x2="700" y2="295.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="299.6" text-anchor="end" font-size="11" fill="#555">10000</text><line x1="70" y1="273.3" x2="700" y2="273.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="277.3" text-anchor="end" font-size="11" fill="#555">15000</text><line x1="70" y1="251.1" x2="700" y2="251.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="255.1" text-anchor="end" font-size="11" fill="#555">20000</text><line x1="70" y1="228.9" x2="700" y2="228.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="232.9" text-anchor="end" font-size="11" fill="#555">25000</text><line x1="70" y1="206.7" x2="700" y2="206.7" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="210.7" text-anchor="end" font-size="11" fill="#555">30000</text><line x1="70" y1="184.4" x2="700" y2="184.4" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="188.4" text-anchor="end" font-size="11" fill="#555">35000</text><line x1="70" y1="162.2" x2="700" y2="162.2" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="166.2" text-anchor="end" font-size="11" fill="#555">40000</text><line x1="70" y1="140.0" x2="700" y2="140.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="144.0" text-anchor="end" font-size="11" fill="#555">45000</text><line x1="70" y1="117.8" x2="700" y2="117.8" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="121.8" text-anchor="end" font-size="11" fill="#555">50000</text><line x1="70" y1="95.6" x2="700" y2="95.6" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="99.6" text-anchor="end" font-size="11" fill="#555">55000</text><line x1="70" y1="73.3" x2="700" y2="73.3" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="77.3" text-anchor="end" font-size="11" fill="#555">60000</text><line x1="70" y1="51.1" x2="700" y2="51.1" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="55.1" text-anchor="end" font-size="11" fill="#555">65000</text><line x1="70" y1="28.9" x2="700" y2="28.9" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="32.9" text-anchor="end" font-size="11" fill="#555">70000</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">1</text><rect x="182.5" y="73.3" width="90.0" height="266.7" fill="#e94560" rx="4"/><text x="227.5" y="65.3" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹60,000</text><text x="227.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Future (buy)</text><rect x="497.5" y="95.6" width="90.0" height="244.4" fill="#f0a500" rx="4"/><text x="542.5" y="87.6" text-anchor="middle" font-size="12" fill="#333" font-weight="bold">₹55,000</text><text x="542.5" y="374.0" text-anchor="middle" font-size="11" fill="#555">Put (sell)</text>
+</svg>
+<p class="chart-note">Galt fehmi: put sell = kam risk NAHI. Stock 10% gira → future mein ~₹60,000 loss vs put mein ~₹55,000 loss [approx] — practically same. ASLI farak: future waiting ka PAISA LETA hai (hidden interest), put waiting par PAISA DETI hai (theta).</p>
+</div>
+<div class="chart-card">
+<h3>Chart 12: Put-Call Parity — 'Saghe Bhai'</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="276.0" x2="700" y2="276.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="280.0" text-anchor="end" font-size="11" fill="#555">20</text><line x1="70" y1="212.0" x2="700" y2="212.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="216.0" text-anchor="end" font-size="11" fill="#555">40</text><line x1="70" y1="148.0" x2="700" y2="148.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="152.0" text-anchor="end" font-size="11" fill="#555">60</text><line x1="70" y1="84.0" x2="700" y2="84.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="88.0" text-anchor="end" font-size="11" fill="#555">80</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">100</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="227.5" y1="20" x2="227.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="227.5" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">50</text><line x1="542.5" y1="20" x2="542.5" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="542.5" y="356" text-anchor="middle" font-size="11" fill="#555">75</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">100</text><rect x="100" y="276.0" width="570" height="16" rx="4" fill="#e94560"/><text x="385.0" y="287.0" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">PUT SELL</text><text x="385.0" y="306.0" text-anchor="middle" font-size="11" fill="#333">≈ FUTURE BUY + CALL SELL</text><rect x="100" y="212.0" width="570" height="16" rx="4" fill="#0f3460"/><text x="385.0" y="223.0" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">FUTURE BUY + PUT BUY</text><text x="385.0" y="242.0" text-anchor="middle" font-size="11" fill="#333">≈ ek hi baat (parity)</text><rect x="100" y="148.0" width="570" height="16" rx="4" fill="#f0a500"/><text x="385.0" y="159.0" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">FUTURE: waiting ka PAISA LETA</text><text x="385.0" y="178.0" text-anchor="middle" font-size="11" fill="#333">hidden interest ~1%/2 months</text><rect x="100" y="84.0" width="570" height="16" rx="4" fill="#2e8b57"/><text x="385.0" y="95.0" text-anchor="middle" font-size="12" fill="#fff" font-weight="bold">PUT: waiting par PAISA DETI</text><text x="385.0" y="114.0" text-anchor="middle" font-size="11" fill="#333">theta / time decay</text>
+</svg>
+<p class="chart-note">Put sell ≈ Future buy + Call sell (ek hi baat). Risk bhi similar: 10% fall → future ~₹60k loss vs put ~₹55k [approx]. Par time ka behaviour ulta: future intezaar ka paisa LETA hai, put intezaar par paisa DETI hai. Isliye teacher: 'Mera first step hamesha put bechna hi hai — call mein mufli milti hai.'</p>
+</div>
+ strike (jahan se selling start)</text>
+</svg>
+<p class="chart-note">R (rolled put): 30/40/50% DK rules LAGU NAHI. Jab Nifty base strike (24,000) se upar jaye expiry ke aas-paas → saare trades khatam. Ya track-record method: jab saare losses recover + tagde profit mein ho.</p>
+</div>
+<div class="chart-card">
+<h3>Chart 11: Premium Decay (DK) Curve — Exit Ladder</h3>
+<svg viewBox="0 0 720 380" width="100%" style="background:#fafbfd">
+<line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="344.0" text-anchor="end" font-size="11" fill="#555">0</text><line x1="70" y1="276.0" x2="700" y2="276.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="280.0" text-anchor="end" font-size="11" fill="#555">20</text><line x1="70" y1="212.0" x2="700" y2="212.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="216.0" text-anchor="end" font-size="11" fill="#555">40</text><line x1="70" y1="148.0" x2="700" y2="148.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="152.0" text-anchor="end" font-size="11" fill="#555">60</text><line x1="70" y1="84.0" x2="700" y2="84.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="88.0" text-anchor="end" font-size="11" fill="#555">80</text><line x1="70" y1="20.0" x2="700" y2="20.0" stroke="#e0e3ea" stroke-width="1"/><text x="62" y="24.0" text-anchor="end" font-size="11" fill="#555">100</text><line x1="70" y1="340.0" x2="700" y2="340.0" stroke="#333" stroke-width="1.5"/><text x="62" y="336.0" text-anchor="end" font-size="10" fill="#000">0</text><line x1="70.0" y1="20" x2="70.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="70.0" y="356" text-anchor="middle" font-size="11" fill="#555">0</text><line x1="175.0" y1="20" x2="175.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="175.0" y="356" text-anchor="middle" font-size="11" fill="#555">5</text><line x1="280.0" y1="20" x2="280.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="280.0" y="356" text-anchor="middle" font-size="11" fill="#555">10</text><line x1="385.0" y1="20" x2="385.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="385.0" y="356" text-anchor="middle" font-size="11" fill="#555">15</text><line x1="490.0" y1="20" x2="490.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="490.0" y="356" text-anchor="middle" font-size="11" fill="#555">20</text><line x1="595.0" y1="20" x2="595.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="595.0" y="356" text-anchor="middle" font-size="11" fill="#555">25</text><line x1="700.0" y1="20" x2="700.0" y2="340" stroke="#e0e3ea" stroke-width="1"/><text x="700.0" y="356" text-anchor="middle" font-size="11" fill="#555">30</text><polyline points="70.0,20.0 91.0,26.4 112.0,34.2 133.0,42.7 154.0,51.5 175.0,60.8 196.0,70.3 217.0,80.0 238.0,90.0 259.0,100.1 280.0,110.5 301.0,120.9 322.0,131.6 343.0,142.3 364.0,153.2 385.0,164.2 406.0,175.3 427.0,186.5 448.0,197.8 469.0,209.2 490.0,220.7 511.0,232.3 532.0,244.0 553.0,255.7 574.0,267.6 595.0,279.5 616.0,291.4 637.0,303.5 658.0,315.6 679.0,327.8 700.0,340.0" fill="none" stroke="#0f3460" stroke-width="3"/><circle cx="91.0" cy="26.40413584147377" r="5" fill="#2e8b57"/><text x="99.0" y="20.40413584147377" font-size="10" fill="#2e8b57">30% 1-din → exit</text><circle cx="385.0" cy="164.20007401773285" r="5" fill="#f0a500"/><text x="393.0" y="178.20007401773285" font-size="10" fill="#f0a500">50% 15-din → exit</text><circle cx="658.0" cy="315.5917246489134" r="5" fill="#e94560"/><text x="648.0" y="309.5917246489134" font-size="10" fill="#e94560" text-anchor="end">70-80% anytime</text><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Days to expiry (0 = expiry) — last 3-4 din decay tezi se</text>
+</svg>
+<p class="chart-note">'18 din hold karke last 5 din ka juice mat phenko' — last 3-4 din mein DK bahut tezi se aata hai (index direction set ho jaati hai). Isliye 70-80% DK tak wait (bada paisa chahiye); 10-20-50% ke liye muh nahi maarna.</p>
+</div>
+" y1="116.0" x2="393.0" y2="116.0" stroke="#e94560" stroke-width="4"/><line x1="503.0" y1="100.0" x2="519.0" y2="100.0" stroke="#e94560" stroke-width="4"/><line x1="188.0" y1="169.33333333333334" x2="204.0" y2="169.33333333333334" stroke="#2e8b57" stroke-width="4"/><line x1="314.0" y1="153.33333333333334" x2="330.0" y2="153.33333333333334" stroke="#2e8b57" stroke-width="4"/><line x1="440.0" y1="137.33333333333331" x2="456.0" y2="137.33333333333331" stroke="#2e8b57" stroke-width="4"/><line x1="566.0" y1="121.33333333333333" x2="582.0" y2="121.33333333333333" stroke="#2e8b57" stroke-width="4"/><rect x="90" y="8" width="14" height="14" fill="#e94560"/><text x="110" y="19" font-size="12" fill="#e94560">Sell 1 lot (50 up)</text><rect x="270" y="8" width="14" height="14" fill="#2e8b57"/><text x="290" y="19" font-size="12" fill="#2e8b57">Buy 1 lot (50 down)</text><text x="385.0" y="376" text-anchor="middle" font-size="12" fill="#333">Time (intraday path) — max 3 lots sell / 3 lots buy</text>
+</svg>
+<p class="chart-note">Big firms literally yahi karte hain: Nifty 50 upar → sell 1 lot (max 3), 50 neeche → buy 1 lot (max 3). Isliye Nifty poora din zigzag karta hai. Teacher isi logic ko daily timeframe par put-selling mein use karta hai.</p>
+</div>
+
+<ul>
+<li>Teacher big firms ke saath kaam karta hai jo <b>thousands of crores manage</b> karti hain — aur wo <b>billi-simple cheezein</b> karke paisa banati hain.</li>
+<li><b>Real example (scalping strategy):</b> <i>"Nifty jahan bhi khula, 50 points upar gaya → 1 lot future SELL. 50 points neeche aaya → 1 lot future BUY."</i></li>
+<li><b>Demo:</b> Nifty kahi khula → 50 upar → sell 1 lot; 50 phir upar → sell 2nd lot; 50 phir upar → sell 3rd lot → <b>3 lots max, sell band</b>. Kisi bhi recent high se 50 neeche → buy 1 lot; aur neeche → buy 1 aur; aur neeche → buy 1 aur.</li>
+<li><b>Isliye Nifty 5-min candle par poora din upar-neeche-upar-neeche karta hai</b> — kabhi direct upar ya direct neeche nahi jaata — kyunki big players upar jane par bechte hain, neeche aane par kharidte hain.</li>
+<li><b>Teacher ka approach:</b> Isi cheez ko <b>bade time frame (daily)</b> par apply karta hai → <b>wo PUT SELL karta hai</b>.</li>
+</ul>
+<div class="win">🎯 <b>Takeaway:</b> Rocket science nahi — simple, repeatable cheezein consistently karo. Big players ki table par bhi wahi simple logic chalta hai.</div>
+
+<h2 id="core-strategy">2️⃣ Core Strategy — Put Selling + Rollover System [3:40–7:33]</h2>
+<h3>Setup</h3>
+<ul>
+<li>Nifty kuch din gira, kisi level par aaya → teacher us level se <b>neeche wali put sell</b> karta hai → <b>premium collect</b>.</li>
+</ul>
+<div class="calc">Example [approx — transcript garbled]:
+Put sell ki, premium ~₹300/lot mila [approx]
+Reference level: 23,132 (Nifty)
+→ Agar month-end tak Nifty 23,132 se UPAR raha → ₹300 premium jeb mein.
+→ Nahi gaya → ROLL OVER: month-end par purani put buy back karo + next month ki SAME put sell karo.
+
+Rollover ka math [approx]:
+Put ₹300 ki bechi → kisi wajah se ₹400 mein buy back karni padi → ₹100 LOSS
+Par 90%+ cases mein agle month ki put ₹330 [approx] par bikti hai
+→ Loss se zyada premium → har month kuch na kuch EXTRA kamao.
+
+Magic of reference level: Nifty 23,132 se halka sa bhi upar gaya
+→ saara loss recover + overall shaandaar profit.</div>
+<ul>
+<li><b>Nifty kyun? Safety.</b> TCS/Dabur/HDFC kab upar jayenge pata nahi (achhi companies hain, unme bhi kaam karta hai), par <b>Nifty mein next-level safety</b> hai — guaranteed upar aata hai.</li>
+<li><b>Proof (P&amp;L):</b> Nifty put ~<b>₹27,000 profit</b> mein hai; F&amp;O P&amp;L reports par ~<b>₹9.8 lakh profit booked</b>.</li>
+<li><b>Account story:</b> ₹50 lakh loan leke market mein daala → <b>3 mahine mein ~₹1 lakh profit ≈ 19–20% return</b> ("Thank you God").</li>
+<li>Zyada paisa <b>INDEX positions</b> se aaya — Bank Nifty, FinNifty, Sensex, HDFC Bank — sab <b>bahut safe</b>.</li>
+<li>Ek Nifty put ne ₹1,400 loss diya — <b>loss small/single trade = koi baat nahi</b>.</li>
+</ul>
+
+<h2 id="entry">3️⃣ Entry Rules — Index mein kab put bechna hai [7:39–11:00]</h2>
+<div class="rule">📌 <b>ENTRY RULES (CORE):</b>
+<ol>
+<li>Jab index <b>lagatar badh raha ho → KUCH MAT KARO.</b></li>
+<li>Recent high se <b>2-4-5% girne ka mauka do</b>, uske baad put becho.</li>
+<li>Index ka <b>recent high se down</b> hona zaroori hai jab put mein kaam karo.</li>
+<li><b>Orange line (Envelope indicator) ke neeche</b> ho → "sone pe suhaga" — orange line ke neeche index mein bullish (put selling) positions = <b>bound to make money, koi nahi rok sakta</b>.</li>
+<li>Requirement: <b>stock/index RECENTLY gira ho</b> → tab premium zyada milega aur profit bhi achha.</li>
+</ol></div>
+<ul>
+<li><b>Current stance (us din):</b> Index 4 din lagatar upar gaya hai → teacher abhi kuch nahi kar raha (1 position chhodkar almost sab squared off). 24,400 [approx] par abhi put nahi bech raha — kyunki index recently upar gaya hai.</li>
+<li><b>Shabashi:</b> Vikas ji ne 1 mahine mein <b>₹57,000 profit</b> kiya = capital ka <b>20%</b> — options mein possible hai (kaafi zyada hai).</li>
+</ul>
+
+<h2 id="sl">4️⃣ Stop-Loss Philosophy — "Main SL nahi lagata" [9:17–11:00]</h2>
+<ul>
+<li>Logo ko lagta hai strategy mein SL hona chahiye — <b>teacher SL nahi lagata</b>.</li>
+<li><b>Logic:</b> Tum <b>great company/stock</b> kharid rahe ho <b>jab wo top se bahut gira ho</b> → aisi buying par SL ka koi sense nahi.</li>
+</ul>
+<h3>Value vs Momentum trading</h3>
+<table>
+<tr><th>Style</th><th>Entry</th><th>Exit</th><th>SL</th></tr>
+<tr><td><b>VALUE trading</b></td><td>Stock neeche hai → value hai</td><td>Stock upar gaya → <b>value khatam = trade khatam</b></td><td>Nahi lagana (bottom par)</td></tr>
+<tr><td><b>MOMENTUM trading</b></td><td>Stock bhaag raha hai → buy; gir raha hai → sell</td><td>Bhaagna/girna khatam = trade khatam</td><td><b>Sabse zaroori</b></td></tr>
+</table>
+<div class="rule">🚫 <b>Do sabse badi bewakoofiyan:</b>
+<ol>
+<li><b>All-time high par buy karna + SL na lagana</b> → wipe out; aise logon ki market life <b>3-4 saal se zyada nahi</b> hoti. (Teacher khud all-time high par kabhi buy hi nahi karta.)</li>
+<li><b>Bottom par buy karke SL lagana</b> — isse bhi badi bewakoofi. Bottom par buy karke SL kabhi nahi lagana.</li>
+</ol></div>
+
+<h2 id="booking">5️⃣ Profit Booking Rules (Fresh vs Rolled) ⭐ [11:08–16:40]</h2>
+<p><b>Notation:</b> <b>F</b> = Fresh put sell (nayi put), <b>R</b> = Rolled-over put sell. <b>DK = premium decay</b> (premium ka girna).</p>
+<h3>Fresh Put (F) — 3-tier exit ladder</h3>
+<table>
+<tr><th>Condition</th><th>Action</th></tr>
+<tr><td><b>1 din mein 30% decay (DK)</b></td><td>Turant buy back + square off</td></tr>
+<tr><td>1 din mein 30% nahi</td><td><b>15 din mein 50% DK</b> par square off</td></tr>
+<tr><td><b>70–80% DK</b></td><td><b>Kabhi bhi exit</b> karo, koi issue nahi</td></tr>
+</table>
+<div class="calc">Example (fresh put): ₹100 par bechi → 1 din mein 30% DK → ₹70 par buy back
+→ Profit = 30 × lot size (Nifty lot = 65) = ₹1,950/lot ✅
+"30 × lot size" — teacher: "Absolutely correct."</div>
+<h3>Rolled-over Put (R) — kab square off</h3>
+<ul>
+<li>Example: Pehli put <b>24,000 strike</b> par bechi → market strike ke neeche gaya → <b>roll over karte raho</b> (same strike 24,000, next month). <b>Base price = 24,000</b> (jis strike se selling start ki).</li>
+<li>Jab Nifty <b>24,000 (base) se upar</b> jaye <b>expiry ke aas-paas</b> → tum shaandaar profit mein → <b>saare trades khatam karo</b>.</li>
+<li><b>30/40/50% DK rule rolled-over put par LAGU NAHI hota</b> — rolled put tab tak rakho jab tak wo upar na jaye.</li>
+<li><b>Alternative (track-record method):</b> Track rakho — "1 mahine ₹10,000 profit, agle mahine ₹20,000 loss, ab ₹70,000 profit" → tab cut kar sakte ho. <b>Saare losses recover ho chuke hon + tagde profit mein ho</b> → tab hi rolled position off karke naya trade lo.</li>
+</ul>
+<h3>Expiry rule</h3>
+<div class="rule">📌 <b>ONLY MONTHLY expiry mein kaam. Weekly KABHI NAHI.</b> Exception: agar monthly mein liquidity na mile — tab hi weekly.</div>
+<h3>"Chul" ho to (gun-on-head scenario)</h3>
+<ul>
+<li><b>Chul honi hi nahi chahiye.</b> Agar hai → <b>neeche wali (OTM) put becho</b> (support level ke aas-paas, ~23,100 ya ~23,600 [approx]).</li>
+<li><b>Terminology:</b> Jahan Nifty abhi hai wahi ki put = <b>ATM</b>. Nifty upar hai → <b>OTM put</b> becho. Nifty gir chuka hai → <b>ATM ya kai baar ITM put</b> bhi bech deta hai.</li>
+</ul>
+<div class="note">💡 <b>DK clarification (Devendra ji):</b> "70-80% DK par any-time sell → sirf 30% profit mila?" → <b>"Yaar tum ULTA samajh rahe ho."</b>
+₹100 par becha → ₹70 par buy back → <b>₹30 profit 1 din mein = 30% DK = 30% profit</b>. 70-80% DK = premium ₹20-30 reh gaya → <b>70-80% profit</b> (seller ke liye DK% = profit%).
+<b>"18 din hold karke last 5 din ka juice (cream) mat phenko"</b> — last 3-4 din mein DK bahut tezi se aata hai (index ek direction set ho jaati hai) — isliye last dinon mein 70-80% DK chahiye, sirf 30% nahi.</div>
+
+<h2 id="strike">6️⃣ Strike Selection — ATM/ITM/OTM Balance + Value is a Range [25:23–30:18]</h2>
+<ul>
+<li><b>Koi jaadui formula nahi</b> jo bata de kya karna hai.</li>
+<li>New trader ka dukh: <b>OTM put ka premium bahut kam</b> (₹4-5k/month [approx] "almost doesn't make sense") → hamesha ATM/ITM ki taraf khinchta hai → phir loss par yaad aati hai "kash OTM becha hota."</li>
+<li><b>Solution = BALANCE:</b> Teacher khud <b>10-10% door ki (OTM) puts bhi bechta hai</b> — "market thoda bhi upar jaye to wo <b>muh meetha kara ke jaati hai</b>."</li>
+</ul>
+<table>
+<tr><th>Portfolio (₹25L)</th><th>Positions</th><th>Role</th></tr>
+<tr><td>₹25 lakh</td><td><b>4 positions max</b></td><td>e.g. <b>2 ATM + 1 ITM + 1 OTM</b> — balance bahut zaroori</td></tr>
+<tr><td>₹5–6 lakh</td><td><b>1 position</b></td><td>Single position, no tension</td></tr>
+</table>
+<div class="rule">📌 <b>VALUE IS A RANGE, NOT A PRICE:</b> <i>"Value kabhi ek price nahi hoti ki yahi price hai, yahi line hai. It's a range. Main bahut neeche kaam karta hoon bas."</i> — Fixed number nahi, range ke concept se kaam karo (Dabur: 440 ke aas-paas, 400/430, 470 — sab lower band range hai).</div>
+<h3>Premium quality — "Peanuts" ka sawaal (Rohit ji)</h3>
+<ul>
+<li>Dabur 430, lower band 403–404 ke aas-paas → 404/405 put ka premium sirf <b>₹3–4 × lot size</b> — bahut kam.</li>
+<li>Teacher: <i>"44 par to kya milega — peanuts mil raha hai."</i></li>
+<li><b>Golden rule (aage cover hoga):</b> Margin ka <b>kam se kam 3% return</b> hona chahiye trade lene ke liye — conservative/aggressive/normal trade ki definition aane wali class mein.</li>
+</ul>
+
+<h2 id="settlement">7️⃣ Settlement — Options vs Futures (Daily MTM) ⭐ [59:42–1:03:09]</h2>
+<h3>OPTIONS (settled at expiry)</h3>
+<ul>
+<li>Agar option trade mein <b>₹1 lakh ka loss</b> dikh raha ho → sirf <b>margin requirement badhegi</b>.</li>
+<li>Account se ₹1 lakh <b>nahi katega</b> (expiry tak unrealized rehta hai). Sab kuch expiry par settle hota hai.</li>
+</ul>
+<h3>FUTURES (daily settlement / mark-to-market)</h3>
+<div class="calc">Day 1: Future neeche gaya → ₹10,000 loss → USI DIN account se ₹10,000 cut (cash component se)
+Day 2: Future upar aaya → ₹3,000 profit → trading ledger mein wapas add
+Har din aise ghat-badh hota rehta hai = Mark to Market (MTM)</div>
+<table>
+<tr><th>Feature</th><th>Options</th><th>Futures</th></tr>
+<tr><td>Settlement</td><td>Expiry par</td><td><b>Daily (MTM)</b></td></tr>
+<tr><td>Loss dikhne par</td><td>Sirf margin requirement badhti hai</td><td><b>Usi din account se cash cut</b></td></tr>
+<tr><td>Profit</td><td>Expiry par settle</td><td>Daily ledger mein add</td></tr>
+<tr><td>Margin</td><td>50% cash/cash component + equity collateral</td><td>Same (min 50% cash)</td></tr>
+</table>
+<div class="rule">🚨 <b>GOLDEN RULE — Cash kabhi negative na karo:</b>
+MTM cash component se jaata hai. Agar cash component negative ho jaye → broker <b>18–20% annual interest</b> charge karta hai + brokerage complications.
+<b>"We should make sure cash kabhi negative na jaye."</b>
+(18% of ₹1L = ₹18,000/year ~ ₹1,500/month — dhyaan rakho, galat math se bacho.)</div>
+
+<h2 id="eu-american">8️⃣ European vs American System [44:36–46:19]</h2>
+<ul>
+<li><b>American system:</b> Option ko <b>kabhi bhi</b> (anytime) exercise kar sakte ho.</li>
+<li><b>European system:</b> Sirf <b>expiry par</b> exercise/square-off hota hai.</li>
+</ul>
+<div class="note">🚗 <b>Car insurance analogy:</b>
+<b>American insurance:</b> "Gaadi jab bhi thuke, tab bhi claim kar sakte ho" → anytime claim.
+<b>European insurance:</b> "Main sirf 31 tarikh ko claim karne dunga (expiry 31 hai)" → sirf expiry par.
+<b>India:</b> Physical/cash settlement — sab expiry par hota hai (automatic square-off expiry par).</div>
+<div class="note">⚠️ <b>Important nuance:</b> Expiry se <b>pehle manual square-off kabhi bhi</b> kar sakte ho — market mein buyers/sellers available hain, contract unhe transfer kar sakte ho. Sirf <i>automatic/exercise</i> part expiry par bound hai. (Student: "matlab automatic square-off expiry par hi hoga" → Teacher: "Absolutely correct. Bilkul.")</div>
+
+<h2 id="margin">9️⃣ Margin, Pledging &amp; Cash Collateral (50% Rule) [1:05:11–1:06:37]</h2>
+<h3>Margin call ka practical kaam (Vikas ji)</h3>
+<ul>
+<li>Margin call unhe aati hai jinke paas ₹10 lakh ho aur wo <b>poora amount deploy</b> kar dein.</li>
+<li><b>₹25 lakh par sirf 4 positions</b> → margin call kabhi nahi aayegi.</li>
+<li><b>Margin = base margin (position maintain karne ke liye) + kuch loss buffer.</b> Loss bada ho gaya → exchange bolega "aur margin rakho, warna position kaat denge." (Zerodha notification: "margin reached X% of your position, hum square off kar denge.")</li>
+</ul>
+<h3>Two Components of Margin (Lalit ji)</h3>
+<ol>
+<li><b>Cash component:</b> Liquid cash / Liquid beech / Liquid Case / <b>debt funds</b> — inhe pledge karo.</li>
+<li><b>Non-cash component:</b> <b>Shares</b> pledge karo (large-cap jaise Bajaj Finance).</li>
+</ol>
+<div class="rule">🚨 <b>EXCHANGE RULE:</b> Minimum <b>50% cash ya cash component</b> chahiye; baaki 50% <b>equity collateral</b> se la sakte ho. Ye har margin-wali cheez par lagta hai (future buy, call sell, kuch bhi).
+<b>"Maximum 50, minimum 50."</b></div>
+<ul>
+<li><b>Option BUYING:</b> Pura cash se buy hota hai — teacher ke students buy nahi karte, sirf <b>square-off ke liye</b> buy karte hain.</li>
+<li><b>Liquid Case ek ETF hai</b> (LIQUIDCASE) — Grow se, Zerodha se, kahin se bhi kharid sakte ho. Teacher: "Maine Grow mein kiya hua hai — 30 lakh ka."</li>
+<li><b>Mutual funds se bhi margin</b> milta hai (purane MF bhi count hote hain). Direct MF ko Zerodha mein Coin se transfer (2-3 din) ya bech ke buy karo (tax lagega).</li>
+<li><b>Pledging practical</b> aage dikhayenge (session mein).</li>
+</ul>
+
+<h2 id="rollover-charges">🔟 Rollover Charges &amp; Far-Month Futures [1:03:13–1:05:11]</h2>
+<ul>
+<li><b>Rollover is EXPENSIVE:</b> Future buy + sell karne par sarkar/broker bahut saare charges leti hai: <b>STT, SEBI tax, Brokerage, Cess, GST, PTT</b>.</li>
+<li>Poora rollover cycle (ye future becha → next future khareeda) ko <b>~₹3,000 costly</b> banati hai [approx].</li>
+<li><b>Teacher ka rule:</b> Immediate month ki jagah <b>door se door ka liquid future</b> lo (e.g. August chhod ke seedha September) → baar-baar trade nahi lena padta → charges kam.</li>
+</ul>
+<div class="note">💡 <b>Anil ji ke liye:</b> 990 wala course kiya tha, ab <b>₹1 lakh tak profit</b> (Nifty put mein ₹28,000) — teacher: "100 guna! Very good, proud of you."</div>
+
+<h2 id="weekly">1️⃣1️⃣ Weekly Expiry — Kyun Avoid Karein [1:06:37–1:10:55]</h2>
+<ul>
+<li><b>Teacher weekly expiry mein kaam NAHI karta.</b></li>
+<li>Nifty ki <b>har Thursday (ya Tuesday)</b> expiry hoti hai — har date ki put dikhti hai.</li>
+<li>Teacher <b>hamesha month-end wali put</b> bechta hai; weekly trades nahi leta.</li>
+<li><b>Stocks mein weekly expiry nahi hai</b> — sirf index mein (aur mainly Nifty).</li>
+</ul>
+<h3>Rollover ka execution (Suman ji)</h3>
+<div class="calc">Rollover = 2 kaam (koi "rollover button" nahi hota):
+1. Purani position OFF karo (buy back)
+2. Nayi position CREATE karo (next month same strike sell)
+Ek hi tick mein nahi hota — pehle off, phir create.</div>
+
+<h2 id="futures-vs-puts">1️⃣2️⃣ Futures vs Puts vs Calls (Sell-side Table + Put-Call Parity) [17:00–25:23]</h2>
+<h3>Sell-side table — price gire to kya hoga</h3>
+<table>
+<tr><th>Action</th><th>Share price gira to</th></tr>
+<tr><td>Put SELL</td><td><b>Loss</b></td></tr>
+<tr><td>Call SELL</td><td><b>Profit</b></td></tr>
+<tr><td>Future SELL</td><td><b>Profit</b></td></tr>
+<tr><td>Future BUY</td><td><b>Loss</b></td></tr>
+</table>
+<h3>Put-Call Parity — "saghe bhai"</h3>
+<div class="calc">Put sell ≈ Future buy + Call sell (ek hi baat)
+Future buy + Put buy ≈ bhi ek hi baat
+Galt fehmi: Put sell = kam risk NAHI. Stock 10% gira to:
+  Future mein ~₹60,000 loss [approx] vs Put mein ~₹55,000 loss [approx] — practically same.
+ASLI FARAK: "Future aapke intezaar karne ke PAISE LETA hai; Put aapke intezaar karne par PAISA DETI hai (time decay)."
+→ Time put-seller ka dost hai.</div>
+<h3>Futures kaise kaam karta hai (Suman ji)</h3>
+<div class="calc">Dabur spot 445, future 450. Future 450 par buy kiya. Expiry par:
+  500 ho gaya → PROFIT
+  430 reh gaya → ₹20 × number of lots pay (450−430=20)
+Future vs Stock = sirf LEVERAGE ka farak:
+  Stock: ₹1 lakh dekar ₹1 lakh ka stock
+  Future: ₹1.5 lakh [approx] dekar ~₹5–6 lakh [approx] ka exposure
+  Is extra exposure ki keemat = INTEREST COST — ~1% per 2 months [approx]
+  → Futures mein ye cost HIDDEN hai (kisi Greek mein nahi dikhti; theta put seller ko dikhta hai)</div>
+<h3>Covered call concept</h3>
+<ul>
+<li>Bahut saari puts bechi → bahut saare futures accumulate ho gaye. Future upar-neeche dance karta hai → <b>upar ki strike ki call sell karo</b>.</li>
+<li>Example: <b>Dabur 400 par liya → 500 ki call sell</b>. Price neeche raha → call mein profit; upar gaya → call mein loss — koi dikkat nahi, kyunki future mein bada profit → overall profit.</li>
+<li><b>BUT condition:</b> Call tabhi becho jab <b>stock holding LOT SIZE ke multiple mein</b> ho. ₹6 lakh ka stock hai to <b>1 call</b> bech sakte ho — koi dikkat nahi. (Warning: ₹1 lakh stock + call bechi → call ITM hui to negative ₹6 lakh exposure.)</li>
+<li><b>Teacher ka style:</b> <i>"Main call rarely bechta hoon. I am in favor of selling PUT only. Main put bechta rehta hoon, phir future buy karke future ko rollover karta rehta hoon — kyunki call mein mufli milti hai."</i> (Market neeche aa chuka hota hai jab future buy karte ho → call already lower value par → call bechne par kuch nahi milega.)</li>
+</ul>
+<div class="rule">🚫 <b>Blunder warning (Pooja ji):</b> "Dabur future 442 par sell kiya + HDFC Bank future sell" → Teacher: <i>"Main confident nahi. Main put sell karta hoon, future nahi. Ye blunder mat karna."</i> — Put/future/call ek dusre nahi hain.</div>
+<div class="note">💡 <b>Confidence rule:</b> Confident nahi → <b>INDEX mein kaam karo</b> (guaranteed upar aata hai, zyada girta nahi, stable returns, kam volatility). Confident ho tabhi stocks mein. <b>Dabur proof:</b> Pichhle 1 saal (2025 se ab tak) Dabur mein sirf 2 loss-making trades — isliye har class mein "Dabur" muh se nikalta hai.</div>
+
+<h2 id="qa">1️⃣3️⃣ Q&amp;A Highlights (15+ Doubts)</h2>
+<table>
+<tr><th>Question</th><th>Answer</th></tr>
+<tr><td><b>"Selling put ke baad adjustment?"</b></td><td><b>No adjustments, kabhi nahi.</b> "Adjustment ka kaam shaitan ka hota hai." Trade le liya → ab sirf profit mein hi katunga.</td></tr>
+<tr><td><b>Futures mein achha paisa kaise?</b></td><td>Index futures mein zyada kaam nahi karta — rollover cost bahut zyada. Index ke saath <b>sirf put sell</b>. Stock future: gira → buy, upar → rules se sell.</td></tr>
+<tr><td><b>Gamma samajh nahi aaya</b></td><td>Aane wali classes mein dobara discuss hoga.</td></tr>
+<tr><td><b>Bullish view + put selling ka poora logic?</b></td><td>Bullish view → put sell → <b>theta/time value</b> chahte hain. Jaise-jaise market upar jayega, profit. Premium = Intrinsic + Time value; put bechte hi premium turant account mein aata hai.</td></tr>
+<tr><td><b>"Market strike se ₹1 neeche gaya to premium se ₹1 kata?"</b></td><td><b>"Aap ulta bol rahe ho!"</b> Put bechi hai to stock girne se <b>intrinsic value ADD hoti hai</b> (seller ke liye unrealized loss). "Jab tak book mein nahi karoge, tab tak loss nahi hoga." (Unrealized vs realized.)</td></tr>
+<tr><td><b>₹200 premium wala put — rollover kaise?</b></td><td>Market gira → poora ₹200 consume (paper loss) → deep ITM → pocket se real paisa katna shuru → square off par actual loss. <b>Solution: next series SAME strike sell</b> → poori intrinsic value wapas + nayi time value (lambi period).</td></tr>
+<tr><td><b>Future buy kyun, call sell kyun nahi?</b></td><td>Call mein <b>mufli milti hai</b> (market neeche aa chuka hota hai). Teacher put-only seller hai; future buy karke rollover karta hai.</td></tr>
+<tr><td><b>Rollover mein put mein kam premium milta hai na?</b></td><td>Rollover mein premium <b>poori intrinsic value hi hoti hai</b>. Kam tab jaati hai jab put <b>illiquid</b> ho jaye. (Concept aage classes mein.)</td></tr>
+<tr><td><b>Lower band strike lo ya ATM?</b></td><td><b>Value ek range hai, price nahi</b> — "main bahut neeche kaam karta hoon" (Nifty 24,000 put, Dabur 430 put dikhaye the).</td></tr>
+<tr><td><b>Cash collateral liquid se fulfill hota hai?</b></td><td><b>Haan</b> — liquid beech ko pledge karni hogi (practical session mein dikhayenge).</td></tr>
+<tr><td><b>25 lakh mein 4 lots — literally liquid cash rakhte ho?</b></td><td><b>"Likh ke bhi rakhta hoon apne paas"</b> — haan, cash component rakhta hai (50% rule).</td></tr>
+<tr><td><b>Future trade + news crash → daily settlement ka impact?</b></td><td>Futures: daily MTM — loss usi din cash se cut. Options: expiry tak unrealized, sirf margin badhta hai. <b>Cash negative → 18-20% interest + brokerage double.</b></td></tr>
+<tr><td><b>Ek month skip karke door ka future kyun?</b></td><td>Rollover expensive (~₹3,000 charges cycle) → <b>door se door ka liquid future</b> lo.</td></tr>
+<tr><td><b>6 lakh capital mein pledging kaise?</b></td><td>1L liquid cash + 5L stock pledge → dono components → put selling start. "Absolutely, absolutely."</td></tr>
+<tr><td><b>Future buying ka margin put sell se kitna zyada?</b></td><td><b>Similar.</b> "25 lakh par 4 positions — max 5-6-7 lakh margin. 7 lakh — dimag khapane ki zaroorat nahi; 8 le lo, 10 le lo."</td></tr>
+<tr><td><b>Algo banaya hai?</b></td><td>"They are not exactly algo, but <b>indirectly algo</b> — kuch hint deta hai ki Nifty shayad aaj ke bottom par hai." (Signal system, exact algo nahi.)</td></tr>
+<tr><td><b>2 lot stock pade hain — wheel use kar sakte hain?</b></td><td><b>"Bilkul kar sakte hain."</b> Covered call existing holdings par valid hai.</td></tr>
+<tr><td><b>Future buy karte waqt kaunsa chart?</b></td><td><b>"Chart hamesha EQUITY ka study karenge"</b> — underlying equity ka, futures ka nahi.</td></tr>
+<tr><td><b>Rule bend kiya kabhi?</b></td><td>"Jahan pe maine rule bend kiya hai, wahan pe meri pitai bhi hui hai — loss khaya. But somehow put se shuffling se recover ho gaya. <b>Rules are very important.</b>"</td></tr>
+</table>
+
+<h2 id="rules">1️⃣4️⃣ Golden Rules (DOS / DON'TS)</h2>
+<h3>✅ DOS</h3>
+<ol>
+<li>Bada paisa = <b>simple cheezein, consistently</b> — rocket science nahi.</li>
+<li>Index lagatar upar ja raha ho → <b>kuch mat karo</b>; recent high se 2-4-5% girne do, phir put becho.</li>
+<li>Put tabhi becho jab <b>stock/index recently gira ho</b> — premium zyada milega.</li>
+<li><b>Orange line (Envelope) ke neeche = ALWAYS</b> kaam; upar = kaam hi nahi.</li>
+<li><b>Only monthly expiry. Weekly = sirf jab monthly mein liquidity na mile.</b></li>
+<li>Fresh put: <b>1-din 30% DK → exit; 15-din 50% → exit; 70-80% → kabhi bhi exit.</b></li>
+<li>Rolled put: <b>% rules nahi; base strike ke upar jaane par saare trades band karo</b> (ya jab poori track-record solid profit mein ho).</li>
+<li><b>Adjustments kabhi nahi</b> — "shaitan ka kaam hai." Trade profit mein hi kato.</li>
+<li>Rollover = <b>2 steps</b> (old off + new create); koi button nahi.</li>
+<li>Last 3-4 din ka <b>juice mat phenko</b> — decay tezi se aata hai.</li>
+<li>Covered call sirf tab jab <b>holding lot-size multiple mein</b> ho (₹6L stock → 1 call).</li>
+<li><b>Balance in strikes:</b> 25L → 4 positions (2 ATM + 1 ITM + 1 OTM style); 5-6L → 1 position.</li>
+<li>Confident nahi → <b>index</b>; confident → stocks. Dabur jaise stable stock par hi risk.</li>
+<li><b>Chart hamesha equity ka dekho</b> (future buy karte waqt bhi).</li>
+<li>Cash collateral: liquid beech/Liquid Case, debt funds, shares, MF — sab pledge karo; <b>min 50% cash/cash component</b> har margin-wali position ke liye.</li>
+<li><b>Rules kabhi bend mat karo</b> — jahan bend kiya, wahan loss hua (teacher ka personal experience).</li>
+</ol>
+<h3>❌ DON'TS</h3>
+<ol>
+<li><b>All-time high par buy + SL na lagana</b> → wipe out (market life 3-4 saal).</li>
+<li><b>Bottom par buy karke SL lagana</b> — sabse badi bewakoofi.</li>
+<li><b>Cash component negative mat hone do</b> — 18-20% annual interest + brokerage complications.</li>
+<li>Weekly expiry mein kaam mat karo — hamesha month-end wali put.</li>
+<li>Option buying mat karo — sirf square-off ke liye buy karo.</li>
+<li><b>Future sell ko put sell samajhna = blunder.</b> (Pooja ji warning: Dabur future sell.)</li>
+<li>Adjustments kabhi nahi.</li>
+<li>₹1 premium wali OTM bechke bada risk mat lo — <b>chinti jaisa khao, haathi jaisa mat do</b>.</li>
+<li>Margin ka <b>kam se kam 3% return</b> nahi wala trade mat lo (aage definition aayegi).</li>
+</ol>
+<div class="rule">🐜🐘 <b>Golden quote:</b> <i>"Option seller eats like ants, shits like elephant."</i> — Chinti ki tarah khate hain, haathi ki tarah nikaalte hain. Mat karo ye: 410/400 strikes par ₹100 premium (chinti jaisa) leke risk lena aur phir ek sath ₹1 lakh dena (haathi jaisa). Isliye teacher ek sath ₹20-30k kamane ki koshish karta hai (index mein).</div>
+
+<h2 id="revision">1️⃣5️⃣ Quick Revision</h2>
+<h3>Formulas / core math</h3>
+<div class="calc">Premium = Intrinsic Value + Time Value
+Put sell par premium TURANT account mein
+DK% = (Sell price − Buy-back price) ÷ Sell price × 100 = seller ka profit%
+Profit (fresh put) = DK% × premium × lot size
+Nifty lot size = 65
+Future hidden cost ≈ 1% per 2 months (interest component)
+Rollover cycle cost ≈ ₹3,000 [approx] (STT+SEBI+brokerage+GST+PTT+cess)
+Margin rule: min 50% cash/cash component, baaki equity collateral
+Margin call se bachna: 25L → 4 positions (5-6-7L margin); 5-6L → 1 position</div>
+<h3>10-second recap</h3>
+<div class="win">✔ Index gira ho, orange line ke neeche → put sell (monthly expiry only).
+✔ Fresh: 1-din 30% / 15-din 50% / 70-80% anytime exit.
+✔ Loss mein → same-strike rollover (intrinsic recover + nayi time value).
+✔ Rolled put: base strike ke upar → sab khatam.
+✔ Future = daily MTM (cash se cut); Option = expiry settlement (margin badhta hai).
+✔ Cash kabhi negative nahi; 50% cash component rule.
+✔ Chart equity ka dekho; adjustments kabhi nahi; rules kabhi bend nahi.</div>
+
+<h2 id="takeaways">1️⃣6️⃣ Takeaways / Homework</h2>
+<ul>
+<li><b>Sensibull</b> navigation ka special 1-2 ghante ka session aayega (kya-kya hai, kahan hai, kaise use karte hain).</li>
+<li><b>"Hemant ka Ikka" indicator</b> WhatsApp group par aayega (teacher ki saari combined strategy usme hai — "mera ikka hai").</li>
+<li><b>Conservative / Aggressive / Normal trade definition</b> + margin % target (3% rule) — aane wali classes mein.</li>
+<li><b>Gamma</b> ka detailed explanation fir se hoga; <b>rollover + illiquidity</b> concept ki dobara classes.</li>
+<li><b>Pledging practical</b> dikhayenge.</li>
+<li>Class schedule: Tue/Thu/Fri (1-2 din), Sunday 10-12 equity + 12-1 F&amp;O doubts, Tuesday ~2 PM market-time doubt session. Min 24 ghante pehle class ka batayenge.</li>
+<li>Beginner course ki 3 basic videos (group par shared) pehle dekh lo — ye advanced course unhe assume karke chalta hai.</li>
+</ul>
+
+<div class="note"><b>Note:</b> Ye notes Hemant Jain (TradeWise by The Future University) ki "Class 1, Futures and Option" advanced-class video se banaye gaye hain — study material hai. Transcript ke kuch numbers garbled the, unhe [approx] mark kiya gaya hai. Kya aapko kisi section ka aur deep-dive chahiye?</div>
+
+</div>
+</body>
+</html>
